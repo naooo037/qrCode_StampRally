@@ -1,0 +1,1 @@
+export { SignoutButtonAdapter as SignoutButton } from "./SignoutButton.Adapter"
