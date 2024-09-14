@@ -2,11 +2,13 @@ import { FC } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import { ErrorFallback } from '@/components/ErrorFallback'
+import { useFetchTodos } from '@/hooks/useFetchTodos'
 
 import { Todos } from './Todos'
 
 const TodosAdapter = () => {
-	return <Todos />
+	const todos = useFetchTodos()
+	return todos ? <Todos todos={todos} /> : null
 }
 
 export const TodosAdapterErrorBoundary: FC = () => {
