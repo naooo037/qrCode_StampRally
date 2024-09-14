@@ -26,6 +26,38 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
+ * @interface PostTodo200Response
+ */
+export interface PostTodo200Response {
+    /**
+     * 
+     * @type {Array<TodoSchema>}
+     * @memberof PostTodo200Response
+     */
+    'result'?: Array<TodoSchema>;
+}
+/**
+ * 
+ * @export
+ * @interface PostTodoRequest
+ */
+export interface PostTodoRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PostTodoRequest
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PostTodoRequest
+     */
+    'completed'?: boolean;
+}
+/**
+ * 
+ * @export
  * @interface ResponseMessage
  */
 export interface ResponseMessage {
@@ -39,21 +71,33 @@ export interface ResponseMessage {
 /**
  * 
  * @export
- * @interface UserAuthData
+ * @interface TodoSchema
  */
-export interface UserAuthData {
+export interface TodoSchema {
+    /**
+     * 
+     * @type {number}
+     * @memberof TodoSchema
+     */
+    'id'?: number;
     /**
      * 
      * @type {string}
-     * @memberof UserAuthData
+     * @memberof TodoSchema
      */
-    'username'?: string;
+    'title'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TodoSchema
+     */
+    'completed'?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof UserAuthData
+     * @memberof TodoSchema
      */
-    'password'?: string;
+    'CreatedAt'?: string;
 }
 
 /**
@@ -77,15 +121,15 @@ export const HelloApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -107,15 +151,15 @@ export const HelloApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -129,7 +173,7 @@ export const HelloApiAxiosParamCreator = function (configuration?: Configuration
  * HelloApi - functional programming interface
  * @export
  */
-export const HelloApiFp = function (configuration?: Configuration) {
+export const HelloApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = HelloApiAxiosParamCreator(configuration)
     return {
         /**
@@ -220,19 +264,19 @@ export class HelloApi extends BaseAPI {
 
 
 /**
- * UserApi - axios parameter creator
+ * TodoApi - axios parameter creator
  * @export
  */
-export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
+export const TodoApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary ユーザー一覧を取得する
+         * @summary Todoリストを返す
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUser: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/user`;
+        getTodo: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/todo`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -240,15 +284,15 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
 
-
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -257,15 +301,15 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary ユーザーをサインインさせる
-         * @param {UserAuthData} userAuthData 
+         * @summary Todoリストに追加する
+         * @param {PostTodoRequest} postTodoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSignin: async (userAuthData: UserAuthData, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'userAuthData' is not null or undefined
-            assertParamExists('postSignin', 'userAuthData', userAuthData)
-            const localVarPath = `/user/signin`;
+        postTodo: async (postTodoRequest: PostTodoRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'postTodoRequest' is not null or undefined
+            assertParamExists('postTodo', 'postTodoRequest', postTodoRequest)
+            const localVarPath = `/todo`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -273,54 +317,18 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
 
-
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(userAuthData, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary ユーザーを追加する
-         * @param {UserAuthData} userAuthData 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postSignup: async (userAuthData: UserAuthData, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'userAuthData' is not null or undefined
-            assertParamExists('postSignup', 'userAuthData', userAuthData)
-            const localVarPath = `/user/signup`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            localVarRequestOptions.data = serializeDataIfNeeded(userAuthData, localVarRequestOptions, configuration)
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(postTodoRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -331,132 +339,97 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 };
 
 /**
- * UserApi - functional programming interface
+ * TodoApi - functional programming interface
  * @export
  */
-export const UserApiFp = function (configuration?: Configuration) {
-    const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
+export const TodoApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = TodoApiAxiosParamCreator(configuration)
     return {
         /**
          * 
-         * @summary ユーザー一覧を取得する
+         * @summary Todoリストを返す
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getUser(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<UserAuthData>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getUser(options);
+        async getTodo(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TodoSchema>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTodo(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.getUser']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['TodoApi.getTodo']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary ユーザーをサインインさせる
-         * @param {UserAuthData} userAuthData 
+         * @summary Todoリストに追加する
+         * @param {PostTodoRequest} postTodoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postSignin(userAuthData: UserAuthData, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postSignin(userAuthData, options);
+        async postTodo(postTodoRequest: PostTodoRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PostTodo200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postTodo(postTodoRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.postSignin']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary ユーザーを追加する
-         * @param {UserAuthData} userAuthData 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async postSignup(userAuthData: UserAuthData, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postSignup(userAuthData, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.postSignup']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['TodoApi.postTodo']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
 
 /**
- * UserApi - factory interface
+ * TodoApi - factory interface
  * @export
  */
-export const UserApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = UserApiFp(configuration)
+export const TodoApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = TodoApiFp(configuration)
     return {
         /**
          * 
-         * @summary ユーザー一覧を取得する
+         * @summary Todoリストを返す
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUser(options?: RawAxiosRequestConfig): AxiosPromise<Array<UserAuthData>> {
-            return localVarFp.getUser(options).then((request) => request(axios, basePath));
+        getTodo(options?: RawAxiosRequestConfig): AxiosPromise<Array<TodoSchema>> {
+            return localVarFp.getTodo(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary ユーザーをサインインさせる
-         * @param {UserAuthData} userAuthData 
+         * @summary Todoリストに追加する
+         * @param {PostTodoRequest} postTodoRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSignin(userAuthData: UserAuthData, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.postSignin(userAuthData, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary ユーザーを追加する
-         * @param {UserAuthData} userAuthData 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postSignup(userAuthData: UserAuthData, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.postSignup(userAuthData, options).then((request) => request(axios, basePath));
+        postTodo(postTodoRequest: PostTodoRequest, options?: RawAxiosRequestConfig): AxiosPromise<PostTodo200Response> {
+            return localVarFp.postTodo(postTodoRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * UserApi - object-oriented interface
+ * TodoApi - object-oriented interface
  * @export
- * @class UserApi
+ * @class TodoApi
  * @extends {BaseAPI}
  */
-export class UserApi extends BaseAPI {
+export class TodoApi extends BaseAPI {
     /**
      * 
-     * @summary ユーザー一覧を取得する
+     * @summary Todoリストを返す
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof UserApi
+     * @memberof TodoApi
      */
-    public getUser(options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).getUser(options).then((request) => request(this.axios, this.basePath));
+    public getTodo(options?: RawAxiosRequestConfig) {
+        return TodoApiFp(this.configuration).getTodo(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary ユーザーをサインインさせる
-     * @param {UserAuthData} userAuthData 
+     * @summary Todoリストに追加する
+     * @param {PostTodoRequest} postTodoRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof UserApi
+     * @memberof TodoApi
      */
-    public postSignin(userAuthData: UserAuthData, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).postSignin(userAuthData, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary ユーザーを追加する
-     * @param {UserAuthData} userAuthData 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserApi
-     */
-    public postSignup(userAuthData: UserAuthData, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).postSignup(userAuthData, options).then((request) => request(this.axios, this.basePath));
+    public postTodo(postTodoRequest: PostTodoRequest, options?: RawAxiosRequestConfig) {
+        return TodoApiFp(this.configuration).postTodo(postTodoRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
