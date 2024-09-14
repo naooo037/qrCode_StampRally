@@ -1,8 +1,18 @@
-import { TodoApi } from '@/.openapi/api';
+import { useEffect, useState } from 'react';
 
-export const useFetchTodos = async () => {
+import { TodoApi, TodoSchema } from '@/.openapi/api';
+
+export const useFetchTodos = () => {
+  const [todos, setTodos] = useState<TodoSchema[] | undefined>(undefined);
+
   const todoApi = new TodoApi();
-  const response = await todoApi.getTodo();
 
-  return response.data;
+  useEffect(() => {
+    (async () => {
+      const response = await todoApi.getTodo();
+      setTodos(response.data.todos);
+    })();
+  }, []);
+
+  return todos;
 }
