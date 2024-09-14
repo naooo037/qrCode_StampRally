@@ -2,8 +2,6 @@ import { useRoutes } from 'react-router-dom'
 
 import { Layout } from '@/components/layout'
 import { Home } from '@/pages/Home'
-import { Signin } from '@/pages/Signin'
-import { Signup } from '@/pages/Signup'
 import { Todo } from '@/pages/Todo'
 import { Todos } from '@/pages/Todos'
 
@@ -18,14 +16,6 @@ export const Routes = () =>
 				{
 					path: path.root(),
 					element: <Home />,
-				},
-				{
-					path: path.signin(),
-					element: <Signin />,
-				},
-				{
-					path: path.signup(),
-					element: <Signup />,
 				},
 				{
 					path: path.todo(':id'),
