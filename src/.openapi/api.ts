@@ -26,6 +26,19 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
+ * @interface GetTodo200Response
+ */
+export interface GetTodo200Response {
+    /**
+     * 
+     * @type {Array<TodoSchema>}
+     * @memberof GetTodo200Response
+     */
+    'todos'?: Array<TodoSchema>;
+}
+/**
+ * 
+ * @export
  * @interface PostTodo200Response
  */
 export interface PostTodo200Response {
@@ -351,7 +364,7 @@ export const TodoApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTodo(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TodoSchema>>> {
+        async getTodo(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTodo200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTodo(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TodoApi.getTodo']?.[localVarOperationServerIndex]?.url;
@@ -386,7 +399,7 @@ export const TodoApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTodo(options?: RawAxiosRequestConfig): AxiosPromise<Array<TodoSchema>> {
+        getTodo(options?: RawAxiosRequestConfig): AxiosPromise<GetTodo200Response> {
             return localVarFp.getTodo(options).then((request) => request(axios, basePath));
         },
         /**
