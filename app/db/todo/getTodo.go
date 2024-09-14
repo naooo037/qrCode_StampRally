@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func FetchTodoList(c *gin.Context) ([]models.TodoModel) {
+func FetchTodo(c *gin.Context) ([]models.TodoModel) {
 	//マイグレーションを実行
 	db.DB.AutoMigrate(&models.TodoModel{})
 

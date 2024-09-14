@@ -6,7 +6,7 @@ import (
 )
 
 func GetTodo(c *gin.Context) {
-	todos := todo.FetchTodoList(c)
+	todos := todo.FetchTodo(c)
 
 	c.JSON(200, gin.H{
 		"todos": todos,
