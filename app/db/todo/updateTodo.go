@@ -10,7 +10,7 @@ func UpdateTodo(id string, updatedTodo models.TodoModel) models.TodoModel {
 	db.DB.AutoMigrate(&models.TodoModel{})
 
 	var todo models.TodoModel
-	db.DB.First(&todo, id)
+	db.DB.Where("id = ?", id).First(&todo)
 	todo = updatedTodo
 	
 	db.DB.Save(&todo)
