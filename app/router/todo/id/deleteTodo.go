@@ -1,11 +1,11 @@
-package todo
+package todoById
 
 import (
 	"github.com/gin-gonic/gin"
 	"app/db/todo"
 )
 
-func DeleteTodo(c *gin.Context) {
+func DeleteTodoById(c *gin.Context) {
 	id := c.Param("id")
 	todo.DeleteTodo(id)
 	

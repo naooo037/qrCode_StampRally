@@ -5,7 +5,7 @@ import (
 	"app/db/todo"
 )
 
-func GetTodo(c *gin.Context) {
+func GetTodos(c *gin.Context) {
 	todos := todo.FetchTodos()
 
 	c.JSON(200, gin.H{
