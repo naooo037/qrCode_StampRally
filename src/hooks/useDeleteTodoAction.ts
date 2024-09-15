@@ -1,6 +1,8 @@
 import { TodoApi } from "@/.openapi/api"
 
-export const useDeleteTodoAction = (id: string) => {
+export const useDeleteTodoAction = () => {
   const todoApi = new TodoApi()
-  todoApi.deleteTodo(id)
+  return async (id: string) => {
+    await todoApi.deleteTodo(id)
+  }
 }
