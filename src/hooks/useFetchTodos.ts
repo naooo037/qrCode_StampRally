@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-import { TodoApi, TodoSchema } from '@/.openapi/api';
+import { TodoApi } from '@/.openapi/api';
+
+import { useTodoStore } from '@/stores/todoStore';
 
 export const useFetchTodos = () => {
-  const [todos, setTodos] = useState<TodoSchema[] | undefined>(undefined);
+  const todos = useTodoStore((state) => state.todos);
+  const setTodos = useTodoStore((state) => state.setTodos);
 
   const todoApi = new TodoApi();
 
