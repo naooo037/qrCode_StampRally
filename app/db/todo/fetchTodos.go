@@ -10,6 +10,6 @@ func FetchTodos() ([]models.TodoModel) {
 	db.DB.AutoMigrate(&models.TodoModel{})
 
 	var todos []models.TodoModel
-	db.DB.Find(&todos)
+	db.DB.Order("created_at desc").Find(&todos)
 	return todos
 }
