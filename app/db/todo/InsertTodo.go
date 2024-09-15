@@ -5,9 +5,11 @@ import (
 	"app/db"
 )
 
-func InsertTodo(todo models.TodoModel) {
+func InsertTodo(todo models.TodoModel) models.TodoModel {
 	//マイグレーションを実行
 	db.DB.AutoMigrate(&models.TodoModel{})
 
 	db.DB.Create(&todo)
+	
+	return todo 
 }

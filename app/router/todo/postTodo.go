@@ -10,8 +10,9 @@ func PostTodo(c *gin.Context) {
 	var newTodo models.TodoModel
 	c.BindJSON(&newTodo)
 
-	todo.InsertTodo(newTodo)
+	newTodo = todo.InsertTodo(newTodo)
+	
 	c.JSON(200, gin.H{
-		"result": newTodo,
+		"todo": newTodo,
 	})
 }
