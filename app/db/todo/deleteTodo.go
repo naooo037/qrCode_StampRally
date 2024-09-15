@@ -6,5 +6,5 @@ import (
 )
 
 func DeleteTodo(id string) {
-	db.DB.Delete(&models.TodoModel{}, id)
+	db.DB.Where("id = ?", id).Delete(&models.TodoModel{})
 }
