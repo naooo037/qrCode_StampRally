@@ -18,7 +18,7 @@ export const TodoCard: FC<Props> = ({ todo, handleUpdateCompleate, date }) => (
 			<MyCheckBox onClick={handleUpdateCompleate} checked={todo.completed} />
 			<div>
 				<h2>{todo.title}</h2>
-				<p>{`CreatedAt: ${date}`}</p>
+				<p>{date}</p>
 			</div>
 		</Cluster>
 		<Stack>
