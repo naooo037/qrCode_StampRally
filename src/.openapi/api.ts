@@ -102,10 +102,10 @@ export interface ResponseMessage {
 export interface TodoSchema {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof TodoSchema
      */
-    'id'?: number;
+    'ID'?: string;
     /**
      * 
      * @type {string}

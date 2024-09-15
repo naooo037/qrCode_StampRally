@@ -2,6 +2,8 @@ import { FC } from 'react'
 
 import { TodoSchema } from '@/.openapi/api'
 
+import { TodoCard } from './TodoCard'
+
 type Props = {
 	todos: TodoSchema[]
 }
@@ -11,9 +13,7 @@ export const Todos: FC<Props> = ({ todos }) => {
 		<div>
 			<h1>Todo</h1>
 			{todos.map((todo, index) => (
-				<div key={`${todo.id} ${index}`}>
-					<h2>{todo.title}</h2>
-				</div>
+				<TodoCard key={`${todo.ID} ${index}`} todo={todo} />
 			))}
 		</div>
 	)

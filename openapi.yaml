@@ -162,8 +162,8 @@ components:
     todoSchema:
       type: object
       properties:
-        id:
-          type: integer
+        ID:
+          type: string
         title:
           type: string
         completed:

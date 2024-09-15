@@ -8,6 +8,7 @@ import { Todos } from './Todos'
 
 const TodosAdapter = () => {
 	const todos = useFetchTodos()
+	console.log(todos)
 	return todos ? <Todos todos={todos} /> : null
 }
 
