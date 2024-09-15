@@ -17,7 +17,8 @@ func Router(db *gorm.DB) (*gin.Engine) {
 
 	engine.GET("/api/todo", todo.GetTodo)
 	engine.POST("/api/todo", todo.PostTodo)
-
+	engine.DELETE("/api/todo/:id", todo.DeleteTodo)
+	
 
 	return engine
 }
