@@ -10,7 +10,7 @@ export const useFetchTodo = (id: string) => {
   useEffect(() => {
     (async () => {
       const response = await todoApi.getTodoId(id);
-      setTodos(response.data);
+      setTodos(response.data.todo);
     })();
   }, []);
 
