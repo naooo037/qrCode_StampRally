@@ -1,11 +1,18 @@
 package models
 
 import (
-	"gorm.io/gorm"
+	"time"
+
+	"github.com/google/uuid"
 )
 
 type TodoModel struct {
-	gorm.Model
+	ID        string `gorm:"primarykey"`
+	CreatedAt time.Time
 	Title     string `json:"title"`
 	Completed bool    `json:"completed"`
+}
+
+func (todo *TodoModel) Init() {
+	todo.ID = uuid.New().String()
 }
