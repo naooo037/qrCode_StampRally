@@ -3,10 +3,9 @@ package todo
 import (
 	"app/models"
 	"app/db"
-	"github.com/gin-gonic/gin"
 )
 
-func FetchTodos(c *gin.Context) ([]models.TodoModel) {
+func FetchTodos() ([]models.TodoModel) {
 	//マイグレーションを実行
 	db.DB.AutoMigrate(&models.TodoModel{})
 
