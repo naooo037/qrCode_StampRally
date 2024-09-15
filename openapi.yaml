@@ -85,6 +85,29 @@ paths:
                     items:
                       $ref: '#/components/schemas/todoSchema'
   /todo/{id}:
+    get:
+      summary: Todoを返す
+      tags:
+        - Todo
+      operationId: get-todo-id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  todo:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/todoSchema'
     delete:
       summary: Todoリストから削除する
       tags:
@@ -103,6 +126,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/responseMessage'
+
 components:
   schemas:
     responseMessage:
