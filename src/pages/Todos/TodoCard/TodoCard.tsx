@@ -1,8 +1,10 @@
 import { FC } from 'react'
-import { Base, Button, CheckBox, Cluster } from 'smarthr-ui'
+import { Base, CheckBox, Cluster } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import { TodoSchema } from '@/.openapi/api'
+
+import { TodoDeleteButton } from './DeleteButton'
 
 type Props = {
 	todo: TodoSchema
@@ -19,7 +21,7 @@ export const TodoCard: FC<Props> = ({ todo, handleUpdateCompleate, date }) => (
 				<p>{`CreatedAt: ${date}`}</p>
 			</div>
 		</Cluster>
-		<Button variant='danger'>削除</Button>
+		<TodoDeleteButton id={todo.ID || ''} title={todo.title || ''} />
 	</CardBase>
 )
 
