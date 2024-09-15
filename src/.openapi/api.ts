@@ -111,6 +111,12 @@ export interface TodoSchema {
      * @memberof TodoSchema
      */
     'CreatedAt'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TodoSchema
+     */
+    'UpdatedAt'?: string;
 }
 
 /**

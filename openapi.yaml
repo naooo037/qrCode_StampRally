@@ -121,3 +121,5 @@ components:
           type: boolean
         CreatedAt:
           type: string
+        UpdatedAt:
+          type: string
