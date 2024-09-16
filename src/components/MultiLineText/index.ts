@@ -1,1 +1,1 @@
-export { MultiLineText } from './multiLineText';
+export { MultiLineText } from './MultiLineText';

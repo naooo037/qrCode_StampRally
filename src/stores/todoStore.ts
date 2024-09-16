@@ -5,10 +5,12 @@ import { TodoSchema } from '@/.openapi/api';
 
 type State = {
   todos: TodoSchema[] | undefined;
+  todo: TodoSchema | undefined;
 };
 
 type Action = {
   setTodos: (todos: TodoSchema[] | undefined) => void;
+  setTodo: (todo: TodoSchema | undefined) => void;
   update: (id: string, currentTodo: TodoSchema) => void;
   delete: (id: string) => void;
   add: (todo: TodoSchema) => void;
@@ -16,7 +18,10 @@ type Action = {
 
 export const useTodoStore = create<State & Action>()((set) => ({
   todos: undefined,
+  todo: undefined,
+
   setTodos: (todos) => set({ todos }),
+  setTodo: (todo) => set({ todo }),
   update: (id, currentTodo) => {
     set((state) => {
       return {
