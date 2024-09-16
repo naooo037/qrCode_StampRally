@@ -13,7 +13,14 @@ type Props = {
 export const TodoCardAdapter: FC<Props> = ({ todo }) => {
 	const useUpdateCompleateAction = useUpdateComplatedTodoAction(todo)
 
-	const date = dateFormate(todo.CreatedAt || '')
+	const isUpdated = todo.CreatedAt !== todo.UpdatedAt
+	const date = (() => {
+		if (isUpdated) {
+			return `更新日時: ${dateFormate(todo.UpdatedAt || '')}`
+		}
+		return `作成日時: ${dateFormate(todo.CreatedAt || '')}`
+	})()
+	console.log(todo)
 
 	const handleUpdateCompleate = () => {
 		useUpdateCompleateAction(todo.ID!, !todo.completed)
