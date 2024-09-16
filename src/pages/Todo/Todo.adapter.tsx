@@ -1,21 +1,38 @@
 import { FC } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
+import { useParams } from 'react-router-dom'
 
 import { ErrorFallback } from '@/components/ErrorFallback'
-import { SigninAdapter } from '@/components/SigninAdapter'
+import { useFetchTodo } from '@/hooks/useFetchTodo'
 
 import { Todo } from './Todo'
 
 const TodoAdapter = () => {
-	return <Todo />
+	const { id } = useParams<{ id: string }>()
+	const todo = useFetchTodo(id || '')
+
+	const breadItems = [
+		{
+			text: 'ホーム',
+			href: '/',
+		},
+		{
+			text: 'Todo一覧',
+			href: '/todo',
+		},
+		{
+			text: 'Todo詳細',
+			href: `/todo/${id}`,
+		},
+	]
+
+	return todo ? <Todo todo={todo} breadItems={breadItems} /> : null
 }
 
 export const TodoAdapterErrorBoundary: FC = () => {
 	return (
 		<ErrorBoundary FallbackComponent={ErrorFallback}>
-			<SigninAdapter>
-				<TodoAdapter />
-			</SigninAdapter>
+			<TodoAdapter />
 		</ErrorBoundary>
 	)
 }

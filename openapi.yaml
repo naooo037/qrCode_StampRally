@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Go×React Template
   description: Go言語とReactを使ったWebアプリケーションのテンプレート
-  version: "0.1"
+  version: '0.1'
 servers:
   - url: http://localhost:5173/api
     description: ローカル開発環境
@@ -39,66 +39,120 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/responseMessage'
-  
-  /user:
+  /todo:
     get:
-      summary: ユーザー一覧を取得する
+      summary: Todoリストを返す
       tags:
-        - User
-      operationId: get-user
+        - Todo
+      operationId: get-todo
       responses:
         '200':
           description: 成功
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/userAuthData'
-        '500':
-          description: サーバーエラー
-  /user/signin:
+                type: object
+                properties:
+                  todos:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/todoSchema'
     post:
-      summary: ユーザーをサインインさせる
+      summary: Todoリストに追加する
       tags:
-        - User
-      operationId: post-signin
+        - Todo
+      operationId: post-todo
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/userAuthData'
-              required:
-                - username
-                - password
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                  nullable: true
+                completed:
+                  type: boolean
       responses:
         '200':
           description: 成功
-        '401':
-          description: ユーザーが存在しないかパスワードが間違っている
-        '500':
-          description: サーバーエラー
-  /user/signup:
-    post:
-      summary: ユーザーを追加する
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  todo:
+                    $ref: '#/components/schemas/todoSchema'
+  /todo/{id}:
+    get:
+      summary: Todoを返す
       tags:
-        - User
-      operationId: post-signup
+        - Todo
+      operationId: get-todo-id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  todo:
+                    $ref: '#/components/schemas/todoSchema'
+    delete:
+      summary: Todoリストから削除する
+      tags:
+        - Todo
+      operationId: delete-todo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseMessage'
+    put:
+      summary: Todoリストを更新する
+      tags:
+        - Todo
+      operationId: put-todo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/userAuthData'
-              required:
-                - username
-                - password
+              $ref: '#/components/schemas/todoSchema'
       responses:
-        '201':
+        '200':
           description: 成功
-        '409':
-          description: ユーザIDが既に存在している
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  todo:
+                    $ref: '#/components/schemas/todoSchema'
 
 components:
   schemas:
@@ -107,10 +161,18 @@ components:
       properties:
         message:
           type: string
-    userAuthData:
+    todoSchema:
       type: object
       properties:
-        username:
+        ID:
           type: string
-        password:
+        title:
+          type: string
+        description:
+          type: string
+        completed:
+          type: boolean
+        CreatedAt:
+          type: string
+        UpdatedAt:
           type: string
