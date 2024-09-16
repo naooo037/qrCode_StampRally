@@ -25,7 +25,7 @@
 ---
 
 [<img src="https://img.shields.io/badge/-Node.js-131828.svg?logo=nodedotjs&style=flat">](https://nodejs.org/en/download/package-manager)
-[<img src="https://img.shields.io/badge/-Node.js-131828.svg?logo=yarn&style=flat">](https://nodejs.org/en/download/package-manager)
+[<img src="https://img.shields.io/badge/-Yarn-131828.svg?logo=yarn&style=flat">](https://nodejs.org/en/download/package-manager)
 
 Reactプロジェクトを実行するために使います
 
