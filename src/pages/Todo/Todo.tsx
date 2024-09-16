@@ -6,6 +6,7 @@ import { TodoSchema } from '@/.openapi/api'
 
 import { BreadcrumbsList, BreadcrumbsType } from '@/components/BreadcrumbsList'
 import { MultiLineText } from '@/components/MultiLineText'
+import { TodoDeleteButton } from '@/components/TodoDeleteButton'
 import { dateFormate } from '@/feature/dateFormate'
 
 import { UpdateTodoButton } from './UpdateTodo'
@@ -47,7 +48,10 @@ export const Todo: FC<Props> = ({ todo, breadItems }) => {
 			<BreadcrumbsList items={breadItems} />
 			<MyCluster>
 				<h1>Todo詳細</h1>
-				<UpdateTodoButton todo={todo} />
+				<HandlerDiv>
+					<UpdateTodoButton todo={todo} />
+					<TodoDeleteButton id={todo.ID || ''} title={todo.title || ''} isDetail />
+				</HandlerDiv>
 			</MyCluster>
 			<Base padding={1.5} overflow='auto'>
 				<DefinitionList items={items} />
@@ -59,4 +63,10 @@ export const Todo: FC<Props> = ({ todo, breadItems }) => {
 const MyCluster = styled(Cluster)`
 	justify-content: space-between;
 	align-items: center;
+`
+
+const HandlerDiv = styled.div`
+	& > * {
+		margin-left: 10px;
+	}
 `
