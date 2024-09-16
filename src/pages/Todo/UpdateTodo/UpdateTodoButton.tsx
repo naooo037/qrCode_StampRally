@@ -9,25 +9,27 @@ import { EditTodoDialog } from '@/components/EditTodoDialog'
 type Props = {
 	isOpen: boolean
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+	todo: TodoSchema
 	onSubmit: (data: TodoSchema) => void
 }
 
-export const AddTodoButton: FC<Props> = ({ isOpen, setIsOpen, onSubmit }) => (
+export const UpdateTodoButton: FC<Props> = ({ isOpen, setIsOpen, todo, onSubmit }) => (
 	<>
-		<AddButton variant='primary' onClick={() => setIsOpen(true)}>
-			追加
-		</AddButton>
+		<UpdateButton variant='primary' onClick={() => setIsOpen(true)}>
+			編集
+		</UpdateButton>
 		<EditTodoDialog
 			isOpen={isOpen}
 			setIsOpen={setIsOpen}
 			dialogTitle='Todoの追加'
 			actionText='追加'
+			todo={todo}
 			submitAction={onSubmit}
 		/>
 	</>
 )
 
-const AddButton = styled(Button)`
+const UpdateButton = styled(Button)`
 	height: fit-content;
 	width: 124px;
 `

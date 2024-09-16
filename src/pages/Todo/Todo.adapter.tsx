@@ -21,7 +21,7 @@ const TodoAdapter = () => {
 			href: '/todo',
 		},
 		{
-			text: '個別Todo',
+			text: 'Todo詳細',
 			href: `/todo/${id}`,
 		},
 	]

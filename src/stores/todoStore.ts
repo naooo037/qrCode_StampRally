@@ -11,7 +11,8 @@ type State = {
 type Action = {
   setTodos: (todos: TodoSchema[] | undefined) => void;
   setTodo: (todo: TodoSchema | undefined) => void;
-  update: (id: string, currentTodo: TodoSchema) => void;
+  updateTodos: (id: string, currentTodo: TodoSchema) => void;
+  updateTodo: (currentTodo: TodoSchema) => void;
   delete: (id: string) => void;
   add: (todo: TodoSchema) => void;
 };
@@ -22,7 +23,7 @@ export const useTodoStore = create<State & Action>()((set) => ({
 
   setTodos: (todos) => set({ todos }),
   setTodo: (todo) => set({ todo }),
-  update: (id, currentTodo) => {
+  updateTodos: (id, currentTodo) => {
     set((state) => {
       return {
         todos: state.todos!.map((todo) => {
@@ -34,6 +35,7 @@ export const useTodoStore = create<State & Action>()((set) => ({
       }
     });
   },
+  updateTodo: (todo) => set({ todo }),
   delete: (id) => {
     set((state) => {
       return {

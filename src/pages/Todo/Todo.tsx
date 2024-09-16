@@ -1,11 +1,14 @@
 import { FC } from 'react'
-import { Base, DefinitionList } from 'smarthr-ui'
+import { Base, Cluster, DefinitionList } from 'smarthr-ui'
+import styled from 'styled-components'
 
 import { TodoSchema } from '@/.openapi/api'
 
 import { BreadcrumbsList, BreadcrumbsType } from '@/components/BreadcrumbsList'
 import { MultiLineText } from '@/components/MultiLineText'
 import { dateFormate } from '@/feature/dateFormate'
+
+import { UpdateTodoButton } from './UpdateTodo'
 
 type Props = {
 	todo: TodoSchema
@@ -42,10 +45,18 @@ export const Todo: FC<Props> = ({ todo, breadItems }) => {
 	return (
 		<div>
 			<BreadcrumbsList items={breadItems} />
-			<h1>Todo</h1>
+			<MyCluster>
+				<h1>Todo詳細</h1>
+				<UpdateTodoButton todo={todo} />
+			</MyCluster>
 			<Base padding={1.5} overflow='auto'>
 				<DefinitionList items={items} />
 			</Base>
 		</div>
 	)
 }
+
+const MyCluster = styled(Cluster)`
+	justify-content: space-between;
+	align-items: center;
+`

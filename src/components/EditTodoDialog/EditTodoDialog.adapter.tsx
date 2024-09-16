@@ -3,8 +3,6 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { TodoSchema } from '@/.openapi/api'
 
-import { useAddTodoAction } from '@/hooks/useAddTodoAction'
-
 import { EditTodoDialog } from './EditTodoDialog'
 
 type Props = {
@@ -12,6 +10,7 @@ type Props = {
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 	actionText: string
 	dialogTitle: string
+	submitAction: (data: TodoSchema) => void
 	todo?: TodoSchema
 }
 
@@ -21,6 +20,7 @@ export const EditTodoDialogAdapter: FC<Props> = ({
 	actionText,
 	dialogTitle,
 	todo,
+	submitAction,
 }) => {
 	const {
 		register,
@@ -32,10 +32,9 @@ export const EditTodoDialogAdapter: FC<Props> = ({
 			...todo,
 		},
 	})
-	const useAddTodo = useAddTodoAction()
 
 	const onClickAction: SubmitHandler<TodoSchema> = (data) => {
-		useAddTodo(data)
+		submitAction(data)
 		setIsOpen(false)
 	}
 	const onClickClose = () => {

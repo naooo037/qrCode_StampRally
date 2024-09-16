@@ -1,0 +1,1 @@
+export { UpdateTodoButtonAdapter as UpdateTodoButton } from './UpdateTodoButton.adapter'
