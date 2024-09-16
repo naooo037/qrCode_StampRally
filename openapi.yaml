@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Go×React Template
   description: Go言語とReactを使ったWebアプリケーションのテンプレート
-  version: "0.1"
+  version: '0.1'
 servers:
   - url: http://localhost:5173/api
     description: ローカル開発環境
@@ -39,11 +39,140 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/responseMessage'
-  
+  /todo:
+    get:
+      summary: Todoリストを返す
+      tags:
+        - Todo
+      operationId: get-todo
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  todos:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/todoSchema'
+    post:
+      summary: Todoリストに追加する
+      tags:
+        - Todo
+      operationId: post-todo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                  nullable: true
+                completed:
+                  type: boolean
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  todo:
+                    $ref: '#/components/schemas/todoSchema'
+  /todo/{id}:
+    get:
+      summary: Todoを返す
+      tags:
+        - Todo
+      operationId: get-todo-id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  todo:
+                    $ref: '#/components/schemas/todoSchema'
+    delete:
+      summary: Todoリストから削除する
+      tags:
+        - Todo
+      operationId: delete-todo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseMessage'
+    put:
+      summary: Todoリストを更新する
+      tags:
+        - Todo
+      operationId: put-todo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/todoSchema'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  todo:
+                    $ref: '#/components/schemas/todoSchema'
+
 components:
   schemas:
     responseMessage:
       type: object
       properties:
         message:
+          type: string
+    todoSchema:
+      type: object
+      properties:
+        ID:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        completed:
+          type: boolean
+        CreatedAt:
+          type: string
+        UpdatedAt:
           type: string

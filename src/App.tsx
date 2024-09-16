@@ -3,14 +3,17 @@ import { createTheme, ThemeProvider } from 'smarthr-ui'
 
 import 'smarthr-ui/smarthr-ui.css'
 
+import { ErrorScreenAdapter } from './components/layout/ErrorScreen'
 import { Routes } from './routes'
 
 const theme = createTheme()
 
 export const App = () => (
 	<ThemeProvider theme={theme}>
-		<BrowserRouter>
-			<Routes />
-		</BrowserRouter>
+		<ErrorScreenAdapter>
+			<BrowserRouter>
+				<Routes />
+			</BrowserRouter>
+		</ErrorScreenAdapter>
 	</ThemeProvider>
 )

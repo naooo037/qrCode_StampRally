@@ -1,0 +1,1 @@
+export { ErrorScreenAdapter } from './ErrorScreenAdapter'
