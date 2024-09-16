@@ -11,6 +11,7 @@ type Action = {
   setTodos: (todos: TodoSchema[] | undefined) => void;
   updateComplate: (id: string, completed: boolean) => void;
   delete: (id: string) => void;
+  add: (todo: TodoSchema) => void;
 };
 
 export const useTodoStore = create<State & Action>()((set) => ({
@@ -32,6 +33,13 @@ export const useTodoStore = create<State & Action>()((set) => ({
     set((state) => {
       return {
         todos: state.todos!.filter((todo) => todo.ID !== id)
+      }
+    });
+  },
+  add: (todo) => {
+    set((state) => {
+      return {
+        todos: [todo, ...state.todos!]
       }
     });
   }

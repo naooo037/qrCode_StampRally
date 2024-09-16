@@ -81,9 +81,8 @@ paths:
               schema:
                 type: object
                 properties:
-                  result:
-                    items:
-                      $ref: '#/components/schemas/todoSchema'
+                  todo:
+                    $ref: '#/components/schemas/todoSchema'
   /todo/{id}:
     get:
       summary: Todoを返す

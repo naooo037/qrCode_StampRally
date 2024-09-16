@@ -39,28 +39,15 @@ export interface GetTodo200Response {
 /**
  * 
  * @export
- * @interface GetTodoId200Response
- */
-export interface GetTodoId200Response {
-    /**
-     * 
-     * @type {TodoSchema}
-     * @memberof GetTodoId200Response
-     */
-    'todo'?: TodoSchema;
-}
-/**
- * 
- * @export
  * @interface PostTodo200Response
  */
 export interface PostTodo200Response {
     /**
      * 
-     * @type {Array<TodoSchema>}
+     * @type {TodoSchema}
      * @memberof PostTodo200Response
      */
-    'result'?: Array<TodoSchema>;
+    'todo'?: TodoSchema;
 }
 /**
  * 
@@ -517,7 +504,7 @@ export const TodoApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTodoId(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTodoId200Response>> {
+        async getTodoId(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PostTodo200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTodoId(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TodoApi.getTodoId']?.[localVarOperationServerIndex]?.url;
@@ -544,7 +531,7 @@ export const TodoApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async putTodo(id: string, todoSchema: TodoSchema, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTodoId200Response>> {
+        async putTodo(id: string, todoSchema: TodoSchema, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PostTodo200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.putTodo(id, todoSchema, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TodoApi.putTodo']?.[localVarOperationServerIndex]?.url;
@@ -586,7 +573,7 @@ export const TodoApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTodoId(id: string, options?: RawAxiosRequestConfig): AxiosPromise<GetTodoId200Response> {
+        getTodoId(id: string, options?: RawAxiosRequestConfig): AxiosPromise<PostTodo200Response> {
             return localVarFp.getTodoId(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -607,7 +594,7 @@ export const TodoApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putTodo(id: string, todoSchema: TodoSchema, options?: RawAxiosRequestConfig): AxiosPromise<GetTodoId200Response> {
+        putTodo(id: string, todoSchema: TodoSchema, options?: RawAxiosRequestConfig): AxiosPromise<PostTodo200Response> {
             return localVarFp.putTodo(id, todoSchema, options).then((request) => request(axios, basePath));
         },
     };
