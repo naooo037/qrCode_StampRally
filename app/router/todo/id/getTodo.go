@@ -8,8 +8,12 @@ import (
 
 func GetTodoById(c *gin.Context) {
 	id := c.Param("id")
-	todo := todo.FetchTodo(id)
-	
+	todo, err := todo.FetchTodo(id)
+	if(err != nil){
+		c.JSON(400, gin.H{
+			"error": err,
+		})
+	}
 	c.JSON(200, gin.H{
 		"todo": todo,
 	})

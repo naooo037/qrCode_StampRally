@@ -5,11 +5,13 @@ import (
 	"app/models"
 )
 
-func FetchTodo(id string) (models.TodoModel) {
+func FetchTodo(id string) (models.TodoModel, error) {
 	//マイグレーションを実行
 	db.DB.AutoMigrate(&models.TodoModel{})
 
 	var todo models.TodoModel
-	db.DB.Where("id = ?", id).First(&todo)
-	return todo
+	result := db.DB.Where("id = ?", id).First(&todo)
+	err := result.Error
+
+	return todo, err
 }
