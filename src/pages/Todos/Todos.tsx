@@ -7,6 +7,7 @@ import { TodoSchema } from '@/.openapi/api'
 import { BreadcrumbsList, BreadcrumbsType } from '@/components/BreadcrumbsList'
 
 import { AddTodoButton } from './AddTodo'
+import { ExistTodo } from './ExistTodo'
 import { TodoCard } from './TodoCard'
 
 type Props = {
@@ -22,9 +23,11 @@ export const Todos: FC<Props> = ({ todos, breadItems }) => {
 				<h1>Todo</h1>
 				<AddTodoButton />
 			</TopCluster>
-			{todos.map((todo, index) => (
-				<TodoCard key={`${todo.ID} ${index}`} todo={todo} />
-			))}
+			{todos.length > 0 ? (
+				todos.map((todo, index) => <TodoCard key={`${todo.ID} ${index}`} todo={todo} />)
+			) : (
+				<ExistTodo />
+			)}
 		</div>
 	)
 }
