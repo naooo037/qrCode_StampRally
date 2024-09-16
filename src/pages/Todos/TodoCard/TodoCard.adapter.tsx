@@ -20,7 +20,6 @@ export const TodoCardAdapter: FC<Props> = ({ todo }) => {
 		}
 		return `作成日時: ${dateFormate(todo.CreatedAt || '')}`
 	})()
-	console.log(todo)
 
 	const handleUpdateCompleate = () => {
 		useUpdateCompleateAction(todo.ID!, !todo.completed)
