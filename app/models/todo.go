@@ -11,6 +11,7 @@ type TodoModel struct {
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	Title     string `json:"title"`
+	Description string `json:"description"`
 	Completed bool    `json:"completed"`
 }
 

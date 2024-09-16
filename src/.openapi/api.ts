@@ -63,6 +63,12 @@ export interface PostTodoRequest {
     'title'?: string;
     /**
      * 
+     * @type {string}
+     * @memberof PostTodoRequest
+     */
+    'description'?: string | null;
+    /**
+     * 
      * @type {boolean}
      * @memberof PostTodoRequest
      */
@@ -99,6 +105,12 @@ export interface TodoSchema {
      * @memberof TodoSchema
      */
     'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TodoSchema
+     */
+    'description'?: string;
     /**
      * 
      * @type {boolean}

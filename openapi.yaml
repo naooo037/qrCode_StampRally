@@ -71,6 +71,9 @@ paths:
               properties:
                 title:
                   type: string
+                description:
+                  type: string
+                  nullable: true
                 completed:
                   type: boolean
       responses:
@@ -164,6 +167,8 @@ components:
         ID:
           type: string
         title:
+          type: string
+        description:
           type: string
         completed:
           type: boolean

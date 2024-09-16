@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { FieldErrors, UseFormRegister } from 'react-hook-form'
-import { ActionDialog, FormControl, Input } from 'smarthr-ui'
+import { ActionDialog, FormControl, Input, Textarea } from 'smarthr-ui'
+import styled from 'styled-components'
 
 import { TodoSchema } from '@/.openapi/api'
 
@@ -40,6 +41,7 @@ export const EditTodoDialog: FC<Props> = ({
 			<Input
 				type='text'
 				width={'100%'}
+				maxLength={100}
 				error={errors.title !== undefined}
 				{...register('title', {
 					required: { value: true, message: 'タイトルは必須です' },
@@ -47,5 +49,21 @@ export const EditTodoDialog: FC<Props> = ({
 				})}
 			/>
 		</FormControl>
+		<FormControl title='説明' errorMessages={errors.description?.message}>
+			<DescriptionTextarea
+				error={errors.description !== undefined}
+				maxLetters={100}
+				maxLength={500}
+				rows={5}
+				{...register('description', {
+					maxLength: { value: 100, message: '説明は100文字までです' },
+				})}
+			/>
+		</FormControl>
 	</ActionDialog>
 )
+
+const DescriptionTextarea = styled(Textarea)`
+	width: 100%;
+	resize: none;
+`

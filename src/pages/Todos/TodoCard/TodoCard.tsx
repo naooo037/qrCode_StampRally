@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Base, CheckBox, Cluster, FaCircleInfoIcon, Stack, TextLink } from 'smarthr-ui'
+import { Base, CheckBox, FaCircleInfoIcon, Stack, Text, TextLink } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import { TodoSchema } from '@/.openapi/api'
@@ -14,13 +14,16 @@ type Props = {
 
 export const TodoCard: FC<Props> = ({ todo, handleUpdateCompleate, date }) => (
 	<CardBase>
-		<Cluster>
+		<CardMainContent>
 			<MyCheckBox onClick={handleUpdateCompleate} checked={todo.completed} />
-			<div>
-				<h2>{todo.title}</h2>
-				<p>{date}</p>
-			</div>
-		</Cluster>
+			<TextDiv>
+				<Text as='h2'>{todo.title}</Text>
+				<Text as='p'>{todo.description}</Text>
+				<Text as='p' size='M'>
+					{date}
+				</Text>
+			</TextDiv>
+		</CardMainContent>
 		<Stack>
 			<TodoDeleteButton id={todo.ID || ''} title={todo.title || ''} />
 			<TextLink href={`/todo/${todo.ID}`} prefix={<FaCircleInfoIcon />}>
@@ -44,9 +47,28 @@ const CardBase = styled(Base)`
 		align-items: center;
 	}
 `
+const CardMainContent = styled.div`
+	display: contents;
+`
 
 const MyCheckBox = styled(CheckBox)`
 	margin: 10px;
 
 	transform: scale(1.5);
+`
+
+const TextDiv = styled.div`
+	overflow: hidden;
+	width: 80%;
+
+	* {
+		width: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	h2 {
+		margin-bottom: 5px;
+	}
 `
