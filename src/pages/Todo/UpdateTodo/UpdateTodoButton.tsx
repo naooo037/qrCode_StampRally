@@ -21,8 +21,8 @@ export const UpdateTodoButton: FC<Props> = ({ isOpen, setIsOpen, todo, onSubmit 
 		<EditTodoDialog
 			isOpen={isOpen}
 			setIsOpen={setIsOpen}
-			dialogTitle='Todoの追加'
-			actionText='追加'
+			dialogTitle='Todoの編集'
+			actionText='保存'
 			todo={todo}
 			submitAction={onSubmit}
 		/>
