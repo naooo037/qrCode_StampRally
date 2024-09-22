@@ -43,7 +43,7 @@ PostgreSQLサーバをDockerのコンテナで実行します
 
 ---
 
-[<img src="https://img.shields.io/badge/-OpenJDK-555555.svg?logo=openjdk&style=flat">](https://jdk.java.net/)
+[<img src="https://img.shields.io/badge/-OpenJDK-555555.svg?logo=openjdk&style=flat">](https://www.oracle.com/java/technologies/downloads/)
 
 このテンプレートの中で使用しているOpenAPIというものの実行するために使います
 
