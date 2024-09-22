@@ -1,8 +1,8 @@
 package main
 
 import (
-	"app/db"
-	"app/router"
+	"github.com/itojun-1230/go_react_template/app/db"
+	"github.com/itojun-1230/go_react_template/app/router"
 	"fmt"
 )
 

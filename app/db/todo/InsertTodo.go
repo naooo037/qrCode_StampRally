@@ -1,8 +1,8 @@
 package todo
 
 import (
-	"app/models"
-	"app/db"
+	"github.com/itojun-1230/go_react_template/app/models"
+	"github.com/itojun-1230/go_react_template/app/db"
 )
 
 func InsertTodo(todo models.TodoModel) models.TodoModel {

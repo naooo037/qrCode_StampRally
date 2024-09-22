@@ -1,10 +1,10 @@
 package router
 
 import (
-	"app/router/hello"
-	"app/router/hellos"
-	"app/router/todo"
-	"app/router/todo/id"
+	"github.com/itojun-1230/go_react_template/app/router/hello"
+	"github.com/itojun-1230/go_react_template/app/router/hellos"
+	"github.com/itojun-1230/go_react_template/app/router/todo"
+	"github.com/itojun-1230/go_react_template/app/router/todo/id"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"

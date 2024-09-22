@@ -14,7 +14,7 @@ var DB *gorm.DB
 
 //データベースの初期接続
 func InitializeDB() (*gorm.DB, error) {
-	err := godotenv.Load("../.env")
+	err := godotenv.Load(".env")
 	if err != nil {
 		fmt.Println("Error loading .env file")
 	}

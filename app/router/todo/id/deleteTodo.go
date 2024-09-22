@@ -2,7 +2,7 @@ package todoById
 
 import (
 	"github.com/gin-gonic/gin"
-	"app/db/todo"
+	"github.com/itojun-1230/go_react_template/app/db/todo"
 )
 
 func DeleteTodoById(c *gin.Context) {

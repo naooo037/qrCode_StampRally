@@ -1,8 +1,8 @@
 package todo
 
 import (
-	"app/models"
-	"app/db/todo"
+	"github.com/itojun-1230/go_react_template/app/models"
+	"github.com/itojun-1230/go_react_template/app/db/todo"
 	"github.com/gin-gonic/gin"
 )
 
