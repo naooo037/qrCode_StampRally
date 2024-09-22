@@ -63,7 +63,7 @@ yarn
 この中にJS関係のライブラリが突っ込まれてます。
 
 ### Goのライブラリをインストールする
-appディレクトリへ移動し、以下のコマンドを実行する
+rootディレクトリへ移動し、以下のコマンドを実行する
 ```
 go install
 go install github.com/cosmtrek/air@latest
