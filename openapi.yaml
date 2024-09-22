@@ -1,35 +1,60 @@
 openapi: 3.0.0
 info:
-  title: Go×React Template
-  description: Go言語とReactを使ったWebアプリケーションのテンプレート
+  title: QRコードスタンプラリーアプリケーション
+  description: QRコードスタンプラリーアプリケーションのAPI仕様書
   version: '0.1'
 servers:
   - url: http://localhost:5173/api
     description: ローカル開発環境
 
 tags:
-  - name: Hello
-    description: Helloに関する操作
+  - name: User
+    description: ユーザーに関する操作
+  - name: Rally
+    description: スタンプラリーに関する操作
+  - name: Stamp
+    description: スタンプに関する操作
+
 paths:
-  /hello:
-    get:
-      summary: Helloというメッセージを返す
+  /users/register:
+    post:
+      summary: ユーザーを登録する
       tags:
-        - Hello
-      operationId: get-hello
+        - User
+      operationId: post-user-register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                rally_id:
+                  type: string
       responses:
         '200':
           description: 成功
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/responseMessage'
-  /hellos:
+                type: object
+                properties:
+                  userId:
+                    type: string
+  /users/{user_id}/stamps:
     get:
-      summary: Helloというメッセージを複数返す
+      summary: ユーザーのスタンプ一覧を取得する
       tags:
-        - Hello
-      operationId: get-hellos
+        - User
+      operationId: get-user-stamps
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: 成功
@@ -38,30 +63,28 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/responseMessage'
-  /todo:
+                  $ref: '#/components/schemas/stampSchema'
+
+  /rallies:
     get:
-      summary: Todoリストを返す
+      summary: スタンプラリー一覧を取得する
       tags:
-        - Todo
-      operationId: get-todo
+        - Rally
+      operationId: get-rallies
       responses:
         '200':
           description: 成功
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  todos:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/todoSchema'
+                type: array
+                items:
+                  $ref: '#/components/schemas/rallySchema'
     post:
-      summary: Todoリストに追加する
+      summary: スタンプラリーを作成する
       tags:
-        - Todo
-      operationId: post-todo
+        - Rally
+      operationId: post-rally
       requestBody:
         required: true
         content:
@@ -69,13 +92,10 @@ paths:
             schema:
               type: object
               properties:
-                title:
+                name:
                   type: string
                 description:
                   type: string
-                  nullable: true
-                completed:
-                  type: boolean
       responses:
         '200':
           description: 成功
@@ -84,16 +104,16 @@ paths:
               schema:
                 type: object
                 properties:
-                  todo:
-                    $ref: '#/components/schemas/todoSchema'
-  /todo/{id}:
+                  rally:
+                    $ref: '#/components/schemas/rallySchema'
+  /rallies/{rally_id}:
     get:
-      summary: Todoを返す
+      summary: スタンプラリーを取得する
       tags:
-        - Todo
-      operationId: get-todo-id
+        - Rally
+      operationId: get-rally
       parameters:
-        - name: id
+        - name: rally_id
           in: path
           required: true
           schema:
@@ -104,17 +124,15 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  todo:
-                    $ref: '#/components/schemas/todoSchema'
-    delete:
-      summary: Todoリストから削除する
+                $ref: '#/components/schemas/rallySchemaWithStamps'
+  /rallies/{rally_id}/stamps:
+    get:
+      summary: スタンプラリーのスタンプ一覧を取得する
       tags:
-        - Todo
-      operationId: delete-todo
+        - Rally
+      operationId: get-rally-stamps
       parameters:
-        - name: id
+        - name: rally_id
           in: path
           required: true
           schema:
@@ -125,14 +143,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/responseMessage'
-    put:
-      summary: Todoリストを更新する
+                type: array
+                items:
+                  $ref: '#/components/schemas/stampSchema'
+    post:
+      summary: スタンプラリーにスタンプを追加する
       tags:
-        - Todo
-      operationId: put-todo
+        - Rally
+      operationId: post-rally-stamp
       parameters:
-        - name: id
+        - name: rally_id
           in: path
           required: true
           schema:
@@ -142,7 +162,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/todoSchema'
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                qrCode:
+                  type: string
       responses:
         '200':
           description: 成功
@@ -151,28 +178,138 @@ paths:
               schema:
                 type: object
                 properties:
-                  todo:
-                    $ref: '#/components/schemas/todoSchema'
+                  stamp:
+                    $ref: '#/components/schemas/stampSchema'
+  
+  /stamp/{stamp_id}:
+    put:
+      summary: スタンプを更新する
+      tags:
+        - Stamp
+      operationId: put-stamp
+      parameters:
+        - name: stamp_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                qrCode:
+                  type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  stamp:
+                    $ref: '#/components/schemas/stampSchema'
+    delete:
+      summary: スタンプを削除する
+      tags:
+        - Stamp
+      operationId: delete-stamp
+      parameters:
+        - name: stamp_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /stamp/collect:
+    post:
+      summary: スタンプを読み込む
+      tags:
+        - Stamp
+      operationId: post-stamp-collect
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                stampId:
+                  type: string
+                userId:
+                  type: string
+      responses:
+        '200':
+            description: 成功
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+        '400':
+          description: 失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
 
 components:
   schemas:
-    responseMessage:
+    rallySchema:
       type: object
       properties:
-        message:
+        id:
           type: string
-    todoSchema:
-      type: object
-      properties:
-        ID:
-          type: string
-        title:
+        name:
           type: string
         description:
           type: string
-        completed:
-          type: boolean
         CreatedAt:
           type: string
         UpdatedAt:
           type: string
+    stampSchema:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        qrCode:
+          type: string
+        CreatedAt:
+          type: string
+        UpdatedAt:
+          type: string
+    rallySchemaWithStamps:
+      allOf:
+        - $ref: '#/components/schemas/rallySchema'
+        - type: object
+          properties:
+            stamps:
+              type: array
+              items:
+                $ref: '#/components/schemas/stampSchema'
