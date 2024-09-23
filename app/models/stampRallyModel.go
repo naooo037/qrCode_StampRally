@@ -12,8 +12,8 @@ type StampRallyModel struct {
 	UpdatedAt time.Time
 	Name	  string `json:"name"`
 	Description string `json:"description"`
-	Stamps []StampModel `gorm:"foreignKey:RallyId;references:RallyId"`
-	User []UserModel `gorm:"foreignKey:RallyId;references:RallyId"`
+	Stamps []StampModel `gorm:"foreignKey:RallyId;references:Id"`
+	User []UserModel `gorm:"foreignKey:RallyId;references:Id"`
 }
 
 func (data *StampRallyModel) Init() {

@@ -12,9 +12,10 @@ type UserModel struct {
 	UpdatedAt 	time.Time
 	Name		string `json:"name"`
 	RallyId	string `json:"rally_id"`
-	UserCollect []UserCollectModel `gorm:"foreignKey:UserID;references:UserID"`
+	UserCollect []UserCollectModel `gorm:"foreignKey:UserID;references:Id"`
 }
 
 func (data *UserModel) Init() {
 	data.Id = uuid.New().String()
+	data.UserCollect = []UserCollectModel{}
 }

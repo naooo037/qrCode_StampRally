@@ -14,7 +14,7 @@ type StampModel struct {
 	Name		string `json:"name"`
 	Description string `json:"description"`
 	QrCode		string `json:"qr_code"`
-	UserCollect []UserCollectModel `gorm:"foreignKey:StampID;references:StampID"`
+	UserCollect []UserCollectModel `gorm:"foreignKey:StampID;references:Id"`
 }
 
 func (data *StampModel) Init() {
