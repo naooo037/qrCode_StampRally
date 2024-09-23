@@ -43,6 +43,39 @@ paths:
                 properties:
                   userId:
                     type: string
+  /users/{user_id}:
+    get:
+      summary: ユーザーを取得する
+      tags:
+        - User
+      operationId: get-user
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      rally_id:
+                        type: string
+                      CreatedAt:
+                        type: string
+                      UpdatedAt:
+                        type: string
   /users/{user_id}/stamps:
     get:
       summary: ユーザーのスタンプ一覧を取得する
