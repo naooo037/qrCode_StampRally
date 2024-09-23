@@ -9,8 +9,11 @@ import (
 func Router(db *gorm.DB) (*gin.Engine) {
 	engine := gin.Default()
 
-	engine.POST("/api/users/register", users.RegisterUser)
+	
+	engine.GET("/api/users", users.GetUsers)
+	engine.POST("/api/users", users.RegisterUser)
 	engine.GET("/api/users/:user_id", users.GetUserById)
+	engine.DELETE("/api/users/:user_id", users.DeleteUser)
 	engine.GET("/api/users/:user_id/stamps", users.GetUserCollectStamps)
 
 	return engine

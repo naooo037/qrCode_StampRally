@@ -16,7 +16,41 @@ tags:
     description: スタンプに関する操作
 
 paths:
-  /users/register:
+  /users:
+    get:
+      summary: ユーザー一覧を取得する
+      tags:
+        - User
+      operationId: get-users
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    rally_id:
+                      type: string
+                    CreatedAt:
+                      type: string
+                    UpdatedAt:
+                      type: string
+        '400':
+          description: 失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
     post:
       summary: ユーザーを登録する
       tags:
@@ -42,6 +76,15 @@ paths:
                 type: object
                 properties:
                   userId:
+                    type: string
+        '400':
+          description: 失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
                     type: string
   /users/{user_id}:
     get:
@@ -76,7 +119,46 @@ paths:
                         type: string
                       UpdatedAt:
                         type: string
-  /users/{user_id}/stamps:
+        '400':
+          description: 失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    delete:
+      summary: ユーザーを削除する
+      tags:
+        - User
+      operationId: delete-user
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: 失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /users{user_id}/stamps:
     get:
       summary: ユーザーのスタンプ一覧を取得する
       tags:
@@ -113,6 +195,15 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/rallySchema'
+        '400':
+          description: 失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
     post:
       summary: スタンプラリーを作成する
       tags:
@@ -139,6 +230,15 @@ paths:
                 properties:
                   rally:
                     $ref: '#/components/schemas/rallySchema'
+        '400':
+          description: 失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
   /rallies/{rally_id}:
     get:
       summary: スタンプラリーを取得する
