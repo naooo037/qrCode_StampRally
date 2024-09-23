@@ -7,7 +7,7 @@ import (
 )
 
 type StampRallyModel struct {
-	id        string `gorm:"primarykey"`
+	Id        string `gorm:"primarykey"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	Name	  string `json:"name"`
@@ -17,5 +17,5 @@ type StampRallyModel struct {
 }
 
 func (data *StampRallyModel) Init() {
-	data.id = uuid.New().String()
+	data.Id = uuid.New().String()
 }

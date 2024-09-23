@@ -7,7 +7,7 @@ import (
 )
 
 type UserModel struct {
-	id        	string `gorm:"primarykey"`
+	Id        	string `gorm:"primarykey"`
 	CreatedAt 	time.Time
 	UpdatedAt 	time.Time
 	Name		string `json:"name"`
@@ -16,5 +16,5 @@ type UserModel struct {
 }
 
 func (data *UserModel) Init() {
-	data.id = uuid.New().String()
+	data.Id = uuid.New().String()
 }
