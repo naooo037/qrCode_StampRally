@@ -11,7 +11,8 @@ func GetUserStamp(id string) ([]models.StampModel, error) {
 	db.DB.AutoMigrate(&models.UserModel{}, &models.StampModel{})
 
 	var user models.UserModel
-	err := db.DB.Where("id = ?", id).First(&user).Error
+	userResult := db.DB.Where("id = ?", id).First(&user)
+	err := userResult.Error
 	if err != nil {
 		return nil, err
 	}
@@ -22,7 +23,8 @@ func GetUserStamp(id string) ([]models.StampModel, error) {
 	}
 
 	var stamps []models.StampModel
-	err = db.DB.Where("id IN (?)", stampIds).Find(&stamps).Error
+	stampsResult := db.DB.Where("id IN (?)", stampIds).Find(&stamps)
+	err = stampsResult.Error
 	if err != nil {
 		return nil, err
 	}
