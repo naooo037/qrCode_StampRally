@@ -2,7 +2,7 @@ package stamp
 
 import (
 	"github.com/gin-gonic/gin"
-	stampDB "github.com/itojun-1230/go_react_template/app/db/stamp"
+	"github.com/itojun-1230/go_react_template/app/db/stamp"
 )
 
 func DeleteStamp(c *gin.Context) {
