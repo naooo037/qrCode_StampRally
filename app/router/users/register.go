@@ -19,11 +19,5 @@ func RegisterUser(c *gin.Context) {
 	}
 	
 	
-	c.JSON(200, gin.H{
-		"id": newUser.Id,
-		"name": newUser.Name,
-		"rally_id": newUser.RallyId,
-		"CreatedAt": newUser.CreatedAt,
-		"UpdatedAt": newUser.UpdatedAt,
-	})
+	c.JSON(200, newUser)
 }

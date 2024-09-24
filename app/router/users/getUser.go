@@ -14,11 +14,5 @@ func GetUserById(c *gin.Context) {
 			"error": err,
 		})
 	}
-	c.JSON(200, gin.H{
-		"id": user.Id,
-		"name": user.Name,
-		"rally_id": user.RallyId,
-		"CreatedAt": user.CreatedAt,
-		"UpdatedAt": user.UpdatedAt,
-	})
+	c.JSON(200, user)
 }
