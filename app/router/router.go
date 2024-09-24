@@ -27,6 +27,7 @@ func Router(db *gorm.DB) (*gin.Engine) {
 
 	engine.PUT("/api/stamp/:stamp_id", stamp.PutStamp)
 	engine.DELETE("/api/stamp/:stamp_id", stamp.DeleteStamp)
+	engine.POST("/api/stamp/:stamp_id/collect/:user_id", stamp.Collect)
 
 	return engine
 }
