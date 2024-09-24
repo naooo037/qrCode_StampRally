@@ -31,17 +31,7 @@ paths:
                 type: array
                 items:
                   type: object
-                  properties:
-                    id:
-                      type: string
-                    name:
-                      type: string
-                    rally_id:
-                      type: string
-                    CreatedAt:
-                      type: string
-                    UpdatedAt:
-                      type: string
+                  $ref: '#/components/schemas/userSchema'
         '400':
           description: 失敗
           content:
@@ -74,9 +64,7 @@ paths:
             application/json:
               schema:
                 type: object
-                properties:
-                  userId:
-                    type: string
+                $ref: '#/components/schemas/userSchema'
         '400':
           description: 失敗
           content:
@@ -227,9 +215,7 @@ paths:
             application/json:
               schema:
                 type: object
-                properties:
-                  rally:
-                    $ref: '#/components/schemas/rallySchema'
+                $ref: '#/components/schemas/rallySchema'
         '400':
           description: 失敗
           content:
@@ -446,3 +432,16 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/stampSchema'
+    userSchema:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        rally_id:
+          type: string
+        CreatedAt:
+          type: string
+        UpdatedAt:
+          type: string 

@@ -18,7 +18,12 @@ func RegisterUser(c *gin.Context) {
 		})
 	}
 	
+	
 	c.JSON(200, gin.H{
-		"userId": newUser.Id,
+		"id": newUser.Id,
+		"name": newUser.Name,
+		"rally_id": newUser.RallyId,
+		"CreatedAt": newUser.CreatedAt,
+		"UpdatedAt": newUser.UpdatedAt,
 	})
 }
