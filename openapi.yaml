@@ -240,6 +240,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/rallySchemaWithStamps'
+    delete:
+      summary: スタンプラリーを削除する
+      tags:
+        - Rally
+      operationId: delete-rally
+      parameters:
+        - name: rally_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: 失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
   /rallies/{rally_id}/stamps:
     get:
       summary: スタンプラリーのスタンプ一覧を取得する
