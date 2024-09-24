@@ -19,6 +19,7 @@ func Router(db *gorm.DB) (*gin.Engine) {
 
 	engine.GET("/api/rallies", rallies.GetRallies)
 	engine.POST("/api/rallies", rallies.PostRallies)
+	engine.GET("/api/rallies/:rally_id", rallies.GetRallyById)
 
 	return engine
 }
