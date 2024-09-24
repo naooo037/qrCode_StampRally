@@ -17,6 +17,6 @@ func DeleteStamp(c *gin.Context) {
 	}
 	
 	c.JSON(200, gin.H{
-		"message": "User deleted successfully",
+		"message": "Stamp deleted successfully",
 	})
 }
