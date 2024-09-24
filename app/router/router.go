@@ -3,6 +3,7 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/itojun-1230/go_react_template/app/router/rallies"
+	"github.com/itojun-1230/go_react_template/app/router/stamp"
 	"github.com/itojun-1230/go_react_template/app/router/users"
 	"gorm.io/gorm"
 )
@@ -23,6 +24,9 @@ func Router(db *gorm.DB) (*gin.Engine) {
 	engine.DELETE("/api/rallies/:rally_id", rallies.DeleteRally)
 	engine.GET("/api/rallies/:rally_id/stamps", rallies.GetStampsInRally)
 	engine.POST("/api/rallies/:rally_id/stamps", rallies.PostStamp)
+
+	engine.PUT("/api/stamp/:stamp_id", stamp.PutStamp)
+	engine.DELETE("/api/stamp/:stamp_id", stamp.DeleteStamp)
 
 	return engine
 }
