@@ -380,23 +380,23 @@ paths:
                 properties:
                   message:
                     type: string
-  /stamp/collect:
+  /stamp/{stamp_id}/collect/{user_id}:
     post:
       summary: スタンプを読み込む
       tags:
         - Stamp
       operationId: post-stamp-collect
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                stampId:
-                  type: string
-                userId:
-                  type: string
+      parameters:
+        - name: stamp_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
             description: 成功
