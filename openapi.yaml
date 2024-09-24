@@ -313,7 +313,7 @@ paths:
                   type: string
                 description:
                   type: string
-                qrCode:
+                qr_code:
                   type: string
       responses:
         '200':
@@ -349,7 +349,7 @@ paths:
                   type: string
                 description:
                   type: string
-                qrCode:
+                qr_code:
                   type: string
       responses:
         '200':
@@ -358,9 +358,7 @@ paths:
             application/json:
               schema:
                 type: object
-                properties:
-                  stamp:
-                    $ref: '#/components/schemas/stampSchema'
+                $ref: '#/components/schemas/stampSchema'
     delete:
       summary: スタンプを削除する
       tags:
@@ -443,7 +441,7 @@ components:
           type: string
         description:
           type: string
-        qrCode:
+        qr_code:
           type: string
         CreatedAt:
           type: string
