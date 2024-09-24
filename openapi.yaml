@@ -93,20 +93,7 @@ paths:
             application/json:
               schema:
                 type: object
-                properties:
-                  user:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      name:
-                        type: string
-                      rally_id:
-                        type: string
-                      CreatedAt:
-                        type: string
-                      UpdatedAt:
-                        type: string
+                $ref: '#/components/schemas/userSchema'
         '400':
           description: 失敗
           content:
@@ -167,6 +154,15 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/stampSchema'
+        '400':
+          description: 失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
 
   /rallies:
     get:
@@ -398,7 +394,7 @@ components:
     rallySchema:
       type: object
       properties:
-        id:
+        Id:
           type: string
         name:
           type: string
@@ -411,7 +407,7 @@ components:
     stampSchema:
       type: object
       properties:
-        id:
+        Id:
           type: string
         name:
           type: string
@@ -435,7 +431,7 @@ components:
     userSchema:
       type: object
       properties:
-        id:
+        Id:
           type: string
         name:
           type: string
