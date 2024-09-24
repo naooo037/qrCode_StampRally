@@ -21,6 +21,8 @@ func Router(db *gorm.DB) (*gin.Engine) {
 	engine.POST("/api/rallies", rallies.PostRallies)
 	engine.GET("/api/rallies/:rally_id", rallies.GetRallyById)
 	engine.DELETE("/api/rallies/:rally_id", rallies.DeleteRally)
+	engine.GET("/api/rallies/:rally_id/stamps", rallies.GetStampsInRally)
+	engine.POST("/api/rallies/:rally_id/stamps", rallies.PostStamp)
 
 	return engine
 }
