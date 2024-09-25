@@ -3,13 +3,11 @@ import { Outlet } from 'react-router-dom'
 import { Stack } from 'smarthr-ui'
 import styled from 'styled-components'
 
-import { AppNavi } from './AppNavi'
 import { Header } from './Header'
 
 export const Layout: FC = () => (
 	<>
 		<Header />
-		<AppNavi />
 		<MainStack>
 			<Outlet />
 		</MainStack>
