@@ -1,1 +1,0 @@
-export { AddTodoButtonAdapter as AddTodoButton } from './AddTodoButton.adapter'
