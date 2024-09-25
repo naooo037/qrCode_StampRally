@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Go×React Template
- * Go言語とReactを使ったWebアプリケーションのテンプレート
+ * QRコードスタンプラリーアプリケーション
+ * QRコードスタンプラリーアプリケーションのAPI仕様書
  *
  * The version of the OpenAPI document: 0.1
  * 
@@ -26,292 +26,284 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
- * @interface GetTodo200Response
+ * @interface DeleteUser200Response
  */
-export interface GetTodo200Response {
-    /**
-     * 
-     * @type {Array<TodoSchema>}
-     * @memberof GetTodo200Response
-     */
-    'todos'?: Array<TodoSchema>;
-}
-/**
- * 
- * @export
- * @interface PostTodo200Response
- */
-export interface PostTodo200Response {
-    /**
-     * 
-     * @type {TodoSchema}
-     * @memberof PostTodo200Response
-     */
-    'todo'?: TodoSchema;
-}
-/**
- * 
- * @export
- * @interface PostTodoRequest
- */
-export interface PostTodoRequest {
+export interface DeleteUser200Response {
     /**
      * 
      * @type {string}
-     * @memberof PostTodoRequest
-     */
-    'title'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PostTodoRequest
-     */
-    'description'?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PostTodoRequest
-     */
-    'completed'?: boolean;
-}
-/**
- * 
- * @export
- * @interface ResponseMessage
- */
-export interface ResponseMessage {
-    /**
-     * 
-     * @type {string}
-     * @memberof ResponseMessage
+     * @memberof DeleteUser200Response
      */
     'message'?: string;
 }
 /**
  * 
  * @export
- * @interface TodoSchema
+ * @interface GetUsers400Response
  */
-export interface TodoSchema {
+export interface GetUsers400Response {
     /**
      * 
      * @type {string}
-     * @memberof TodoSchema
+     * @memberof GetUsers400Response
      */
-    'ID'?: string;
+    'error'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PostRallyRequest
+ */
+export interface PostRallyRequest {
     /**
      * 
      * @type {string}
-     * @memberof TodoSchema
+     * @memberof PostRallyRequest
      */
-    'title'?: string;
+    'name'?: string;
     /**
      * 
      * @type {string}
-     * @memberof TodoSchema
+     * @memberof PostRallyRequest
+     */
+    'description'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PostRallyStamp200Response
+ */
+export interface PostRallyStamp200Response {
+    /**
+     * 
+     * @type {StampSchema}
+     * @memberof PostRallyStamp200Response
+     */
+    'stamp'?: StampSchema;
+}
+/**
+ * 
+ * @export
+ * @interface PostRallyStampRequest
+ */
+export interface PostRallyStampRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PostRallyStampRequest
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostRallyStampRequest
      */
     'description'?: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof TodoSchema
+     * @type {string}
+     * @memberof PostRallyStampRequest
      */
-    'completed'?: boolean;
+    'qr_code'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PostUserRegisterRequest
+ */
+export interface PostUserRegisterRequest {
     /**
      * 
      * @type {string}
-     * @memberof TodoSchema
+     * @memberof PostUserRegisterRequest
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PostUserRegisterRequest
+     */
+    'rally_id'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RallySchema
+ */
+export interface RallySchema {
+    /**
+     * 
+     * @type {string}
+     * @memberof RallySchema
+     */
+    'Id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RallySchema
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RallySchema
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RallySchema
      */
     'CreatedAt'?: string;
     /**
      * 
      * @type {string}
-     * @memberof TodoSchema
+     * @memberof RallySchema
+     */
+    'UpdatedAt'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RallySchemaWithStamps
+ */
+export interface RallySchemaWithStamps {
+    /**
+     * 
+     * @type {string}
+     * @memberof RallySchemaWithStamps
+     */
+    'Id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RallySchemaWithStamps
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RallySchemaWithStamps
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RallySchemaWithStamps
+     */
+    'CreatedAt'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RallySchemaWithStamps
+     */
+    'UpdatedAt'?: string;
+    /**
+     * 
+     * @type {Array<StampSchema>}
+     * @memberof RallySchemaWithStamps
+     */
+    'stamps'?: Array<StampSchema>;
+}
+/**
+ * 
+ * @export
+ * @interface StampSchema
+ */
+export interface StampSchema {
+    /**
+     * 
+     * @type {string}
+     * @memberof StampSchema
+     */
+    'Id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StampSchema
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StampSchema
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StampSchema
+     */
+    'qr_code'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StampSchema
+     */
+    'CreatedAt'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StampSchema
+     */
+    'UpdatedAt'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UserSchema
+ */
+export interface UserSchema {
+    /**
+     * 
+     * @type {string}
+     * @memberof UserSchema
+     */
+    'Id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserSchema
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserSchema
+     */
+    'rally_id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserSchema
+     */
+    'CreatedAt'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserSchema
      */
     'UpdatedAt'?: string;
 }
 
 /**
- * HelloApi - axios parameter creator
+ * RallyApi - axios parameter creator
  * @export
  */
-export const HelloApiAxiosParamCreator = function (configuration?: Configuration) {
+export const RallyApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Helloというメッセージを返す
+         * @summary スタンプラリーを削除する
+         * @param {string} rallyId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getHello: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/hello`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Helloというメッセージを複数返す
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getHellos: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/hellos`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * HelloApi - functional programming interface
- * @export
- */
-export const HelloApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = HelloApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @summary Helloというメッセージを返す
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getHello(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResponseMessage>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getHello(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['HelloApi.getHello']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Helloというメッセージを複数返す
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getHellos(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ResponseMessage>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getHellos(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['HelloApi.getHellos']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-    }
-};
-
-/**
- * HelloApi - factory interface
- * @export
- */
-export const HelloApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = HelloApiFp(configuration)
-    return {
-        /**
-         * 
-         * @summary Helloというメッセージを返す
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getHello(options?: RawAxiosRequestConfig): AxiosPromise<ResponseMessage> {
-            return localVarFp.getHello(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Helloというメッセージを複数返す
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getHellos(options?: RawAxiosRequestConfig): AxiosPromise<Array<ResponseMessage>> {
-            return localVarFp.getHellos(options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * HelloApi - object-oriented interface
- * @export
- * @class HelloApi
- * @extends {BaseAPI}
- */
-export class HelloApi extends BaseAPI {
-    /**
-     * 
-     * @summary Helloというメッセージを返す
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HelloApi
-     */
-    public getHello(options?: RawAxiosRequestConfig) {
-        return HelloApiFp(this.configuration).getHello(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Helloというメッセージを複数返す
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HelloApi
-     */
-    public getHellos(options?: RawAxiosRequestConfig) {
-        return HelloApiFp(this.configuration).getHellos(options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-
-/**
- * TodoApi - axios parameter creator
- * @export
- */
-export const TodoApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Todoリストから削除する
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteTodo: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('deleteTodo', 'id', id)
-            const localVarPath = `/todo/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        deleteRally: async (rallyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'rallyId' is not null or undefined
+            assertParamExists('deleteRally', 'rallyId', rallyId)
+            const localVarPath = `/rallies/{rally_id}`
+                .replace(`{${"rally_id"}}`, encodeURIComponent(String(rallyId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -336,12 +328,12 @@ export const TodoApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary Todoリストを返す
+         * @summary スタンプラリー一覧を取得する
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTodo: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/todo`;
+        getRallies: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/rallies`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -366,16 +358,16 @@ export const TodoApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary Todoを返す
-         * @param {string} id 
+         * @summary スタンプラリーを取得する
+         * @param {string} rallyId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTodoId: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('getTodoId', 'id', id)
-            const localVarPath = `/todo/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        getRally: async (rallyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'rallyId' is not null or undefined
+            assertParamExists('getRally', 'rallyId', rallyId)
+            const localVarPath = `/rallies/{rally_id}`
+                .replace(`{${"rally_id"}}`, encodeURIComponent(String(rallyId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -400,15 +392,49 @@ export const TodoApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary Todoリストに追加する
-         * @param {PostTodoRequest} postTodoRequest 
+         * @summary スタンプラリーのスタンプ一覧を取得する
+         * @param {string} rallyId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postTodo: async (postTodoRequest: PostTodoRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'postTodoRequest' is not null or undefined
-            assertParamExists('postTodo', 'postTodoRequest', postTodoRequest)
-            const localVarPath = `/todo`;
+        getRallyStamps: async (rallyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'rallyId' is not null or undefined
+            assertParamExists('getRallyStamps', 'rallyId', rallyId)
+            const localVarPath = `/rallies/{rally_id}/stamps`
+                .replace(`{${"rally_id"}}`, encodeURIComponent(String(rallyId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary スタンプラリーを作成する
+         * @param {PostRallyRequest} postRallyRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postRally: async (postRallyRequest: PostRallyRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'postRallyRequest' is not null or undefined
+            assertParamExists('postRally', 'postRallyRequest', postRallyRequest)
+            const localVarPath = `/rallies`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -427,7 +453,7 @@ export const TodoApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(postTodoRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(postRallyRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -436,19 +462,380 @@ export const TodoApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary Todoリストを更新する
-         * @param {string} id 
-         * @param {TodoSchema} todoSchema 
+         * @summary スタンプラリーにスタンプを追加する
+         * @param {string} rallyId 
+         * @param {PostRallyStampRequest} postRallyStampRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putTodo: async (id: string, todoSchema: TodoSchema, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('putTodo', 'id', id)
-            // verify required parameter 'todoSchema' is not null or undefined
-            assertParamExists('putTodo', 'todoSchema', todoSchema)
-            const localVarPath = `/todo/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        postRallyStamp: async (rallyId: string, postRallyStampRequest: PostRallyStampRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'rallyId' is not null or undefined
+            assertParamExists('postRallyStamp', 'rallyId', rallyId)
+            // verify required parameter 'postRallyStampRequest' is not null or undefined
+            assertParamExists('postRallyStamp', 'postRallyStampRequest', postRallyStampRequest)
+            const localVarPath = `/rallies/{rally_id}/stamps`
+                .replace(`{${"rally_id"}}`, encodeURIComponent(String(rallyId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(postRallyStampRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * RallyApi - functional programming interface
+ * @export
+ */
+export const RallyApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RallyApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary スタンプラリーを削除する
+         * @param {string} rallyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteRally(rallyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteUser200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteRally(rallyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RallyApi.deleteRally']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary スタンプラリー一覧を取得する
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getRallies(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RallySchema>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRallies(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RallyApi.getRallies']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary スタンプラリーを取得する
+         * @param {string} rallyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getRally(rallyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RallySchemaWithStamps>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRally(rallyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RallyApi.getRally']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary スタンプラリーのスタンプ一覧を取得する
+         * @param {string} rallyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getRallyStamps(rallyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<StampSchema>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRallyStamps(rallyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RallyApi.getRallyStamps']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary スタンプラリーを作成する
+         * @param {PostRallyRequest} postRallyRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postRally(postRallyRequest: PostRallyRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RallySchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postRally(postRallyRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RallyApi.postRally']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary スタンプラリーにスタンプを追加する
+         * @param {string} rallyId 
+         * @param {PostRallyStampRequest} postRallyStampRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postRallyStamp(rallyId: string, postRallyStampRequest: PostRallyStampRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PostRallyStamp200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postRallyStamp(rallyId, postRallyStampRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RallyApi.postRallyStamp']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * RallyApi - factory interface
+ * @export
+ */
+export const RallyApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RallyApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary スタンプラリーを削除する
+         * @param {string} rallyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteRally(rallyId: string, options?: RawAxiosRequestConfig): AxiosPromise<DeleteUser200Response> {
+            return localVarFp.deleteRally(rallyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary スタンプラリー一覧を取得する
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRallies(options?: RawAxiosRequestConfig): AxiosPromise<Array<RallySchema>> {
+            return localVarFp.getRallies(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary スタンプラリーを取得する
+         * @param {string} rallyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRally(rallyId: string, options?: RawAxiosRequestConfig): AxiosPromise<RallySchemaWithStamps> {
+            return localVarFp.getRally(rallyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary スタンプラリーのスタンプ一覧を取得する
+         * @param {string} rallyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRallyStamps(rallyId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<StampSchema>> {
+            return localVarFp.getRallyStamps(rallyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary スタンプラリーを作成する
+         * @param {PostRallyRequest} postRallyRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postRally(postRallyRequest: PostRallyRequest, options?: RawAxiosRequestConfig): AxiosPromise<RallySchema> {
+            return localVarFp.postRally(postRallyRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary スタンプラリーにスタンプを追加する
+         * @param {string} rallyId 
+         * @param {PostRallyStampRequest} postRallyStampRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postRallyStamp(rallyId: string, postRallyStampRequest: PostRallyStampRequest, options?: RawAxiosRequestConfig): AxiosPromise<PostRallyStamp200Response> {
+            return localVarFp.postRallyStamp(rallyId, postRallyStampRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * RallyApi - object-oriented interface
+ * @export
+ * @class RallyApi
+ * @extends {BaseAPI}
+ */
+export class RallyApi extends BaseAPI {
+    /**
+     * 
+     * @summary スタンプラリーを削除する
+     * @param {string} rallyId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RallyApi
+     */
+    public deleteRally(rallyId: string, options?: RawAxiosRequestConfig) {
+        return RallyApiFp(this.configuration).deleteRally(rallyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary スタンプラリー一覧を取得する
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RallyApi
+     */
+    public getRallies(options?: RawAxiosRequestConfig) {
+        return RallyApiFp(this.configuration).getRallies(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary スタンプラリーを取得する
+     * @param {string} rallyId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RallyApi
+     */
+    public getRally(rallyId: string, options?: RawAxiosRequestConfig) {
+        return RallyApiFp(this.configuration).getRally(rallyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary スタンプラリーのスタンプ一覧を取得する
+     * @param {string} rallyId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RallyApi
+     */
+    public getRallyStamps(rallyId: string, options?: RawAxiosRequestConfig) {
+        return RallyApiFp(this.configuration).getRallyStamps(rallyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary スタンプラリーを作成する
+     * @param {PostRallyRequest} postRallyRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RallyApi
+     */
+    public postRally(postRallyRequest: PostRallyRequest, options?: RawAxiosRequestConfig) {
+        return RallyApiFp(this.configuration).postRally(postRallyRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary スタンプラリーにスタンプを追加する
+     * @param {string} rallyId 
+     * @param {PostRallyStampRequest} postRallyStampRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RallyApi
+     */
+    public postRallyStamp(rallyId: string, postRallyStampRequest: PostRallyStampRequest, options?: RawAxiosRequestConfig) {
+        return RallyApiFp(this.configuration).postRallyStamp(rallyId, postRallyStampRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * StampApi - axios parameter creator
+ * @export
+ */
+export const StampApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary スタンプを削除する
+         * @param {string} stampId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteStamp: async (stampId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'stampId' is not null or undefined
+            assertParamExists('deleteStamp', 'stampId', stampId)
+            const localVarPath = `/stamp/{stamp_id}`
+                .replace(`{${"stamp_id"}}`, encodeURIComponent(String(stampId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary スタンプを読み込む
+         * @param {string} stampId 
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postStampCollect: async (stampId: string, userId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'stampId' is not null or undefined
+            assertParamExists('postStampCollect', 'stampId', stampId)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('postStampCollect', 'userId', userId)
+            const localVarPath = `/stamp/{stamp_id}/collect/{user_id}`
+                .replace(`{${"stamp_id"}}`, encodeURIComponent(String(stampId)))
+                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary スタンプを更新する
+         * @param {string} stampId 
+         * @param {PostRallyStampRequest} postRallyStampRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putStamp: async (stampId: string, postRallyStampRequest: PostRallyStampRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'stampId' is not null or undefined
+            assertParamExists('putStamp', 'stampId', stampId)
+            // verify required parameter 'postRallyStampRequest' is not null or undefined
+            assertParamExists('putStamp', 'postRallyStampRequest', postRallyStampRequest)
+            const localVarPath = `/stamp/{stamp_id}`
+                .replace(`{${"stamp_id"}}`, encodeURIComponent(String(stampId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -467,7 +854,7 @@ export const TodoApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(todoSchema, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(postRallyStampRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -478,205 +865,520 @@ export const TodoApiAxiosParamCreator = function (configuration?: Configuration)
 };
 
 /**
- * TodoApi - functional programming interface
+ * StampApi - functional programming interface
  * @export
  */
-export const TodoApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = TodoApiAxiosParamCreator(configuration)
+export const StampApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = StampApiAxiosParamCreator(configuration)
     return {
         /**
          * 
-         * @summary Todoリストから削除する
-         * @param {string} id 
+         * @summary スタンプを削除する
+         * @param {string} stampId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteTodo(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ResponseMessage>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteTodo(id, options);
+        async deleteStamp(stampId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteUser200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteStamp(stampId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['TodoApi.deleteTodo']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['StampApi.deleteStamp']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Todoリストを返す
+         * @summary スタンプを読み込む
+         * @param {string} stampId 
+         * @param {string} userId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTodo(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTodo200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getTodo(options);
+        async postStampCollect(stampId: string, userId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteUser200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postStampCollect(stampId, userId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['TodoApi.getTodo']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['StampApi.postStampCollect']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Todoを返す
-         * @param {string} id 
+         * @summary スタンプを更新する
+         * @param {string} stampId 
+         * @param {PostRallyStampRequest} postRallyStampRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTodoId(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PostTodo200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getTodoId(id, options);
+        async putStamp(stampId: string, postRallyStampRequest: PostRallyStampRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StampSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.putStamp(stampId, postRallyStampRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['TodoApi.getTodoId']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Todoリストに追加する
-         * @param {PostTodoRequest} postTodoRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async postTodo(postTodoRequest: PostTodoRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PostTodo200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postTodo(postTodoRequest, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['TodoApi.postTodo']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Todoリストを更新する
-         * @param {string} id 
-         * @param {TodoSchema} todoSchema 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async putTodo(id: string, todoSchema: TodoSchema, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PostTodo200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.putTodo(id, todoSchema, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['TodoApi.putTodo']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['StampApi.putStamp']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
 
 /**
- * TodoApi - factory interface
+ * StampApi - factory interface
  * @export
  */
-export const TodoApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = TodoApiFp(configuration)
+export const StampApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = StampApiFp(configuration)
     return {
         /**
          * 
-         * @summary Todoリストから削除する
-         * @param {string} id 
+         * @summary スタンプを削除する
+         * @param {string} stampId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteTodo(id: string, options?: RawAxiosRequestConfig): AxiosPromise<ResponseMessage> {
-            return localVarFp.deleteTodo(id, options).then((request) => request(axios, basePath));
+        deleteStamp(stampId: string, options?: RawAxiosRequestConfig): AxiosPromise<DeleteUser200Response> {
+            return localVarFp.deleteStamp(stampId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Todoリストを返す
+         * @summary スタンプを読み込む
+         * @param {string} stampId 
+         * @param {string} userId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTodo(options?: RawAxiosRequestConfig): AxiosPromise<GetTodo200Response> {
-            return localVarFp.getTodo(options).then((request) => request(axios, basePath));
+        postStampCollect(stampId: string, userId: string, options?: RawAxiosRequestConfig): AxiosPromise<DeleteUser200Response> {
+            return localVarFp.postStampCollect(stampId, userId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Todoを返す
-         * @param {string} id 
+         * @summary スタンプを更新する
+         * @param {string} stampId 
+         * @param {PostRallyStampRequest} postRallyStampRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTodoId(id: string, options?: RawAxiosRequestConfig): AxiosPromise<PostTodo200Response> {
-            return localVarFp.getTodoId(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Todoリストに追加する
-         * @param {PostTodoRequest} postTodoRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postTodo(postTodoRequest: PostTodoRequest, options?: RawAxiosRequestConfig): AxiosPromise<PostTodo200Response> {
-            return localVarFp.postTodo(postTodoRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Todoリストを更新する
-         * @param {string} id 
-         * @param {TodoSchema} todoSchema 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        putTodo(id: string, todoSchema: TodoSchema, options?: RawAxiosRequestConfig): AxiosPromise<PostTodo200Response> {
-            return localVarFp.putTodo(id, todoSchema, options).then((request) => request(axios, basePath));
+        putStamp(stampId: string, postRallyStampRequest: PostRallyStampRequest, options?: RawAxiosRequestConfig): AxiosPromise<StampSchema> {
+            return localVarFp.putStamp(stampId, postRallyStampRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * TodoApi - object-oriented interface
+ * StampApi - object-oriented interface
  * @export
- * @class TodoApi
+ * @class StampApi
  * @extends {BaseAPI}
  */
-export class TodoApi extends BaseAPI {
+export class StampApi extends BaseAPI {
     /**
      * 
-     * @summary Todoリストから削除する
-     * @param {string} id 
+     * @summary スタンプを削除する
+     * @param {string} stampId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TodoApi
+     * @memberof StampApi
      */
-    public deleteTodo(id: string, options?: RawAxiosRequestConfig) {
-        return TodoApiFp(this.configuration).deleteTodo(id, options).then((request) => request(this.axios, this.basePath));
+    public deleteStamp(stampId: string, options?: RawAxiosRequestConfig) {
+        return StampApiFp(this.configuration).deleteStamp(stampId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Todoリストを返す
+     * @summary スタンプを読み込む
+     * @param {string} stampId 
+     * @param {string} userId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TodoApi
+     * @memberof StampApi
      */
-    public getTodo(options?: RawAxiosRequestConfig) {
-        return TodoApiFp(this.configuration).getTodo(options).then((request) => request(this.axios, this.basePath));
+    public postStampCollect(stampId: string, userId: string, options?: RawAxiosRequestConfig) {
+        return StampApiFp(this.configuration).postStampCollect(stampId, userId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Todoを返す
-     * @param {string} id 
+     * @summary スタンプを更新する
+     * @param {string} stampId 
+     * @param {PostRallyStampRequest} postRallyStampRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TodoApi
+     * @memberof StampApi
      */
-    public getTodoId(id: string, options?: RawAxiosRequestConfig) {
-        return TodoApiFp(this.configuration).getTodoId(id, options).then((request) => request(this.axios, this.basePath));
+    public putStamp(stampId: string, postRallyStampRequest: PostRallyStampRequest, options?: RawAxiosRequestConfig) {
+        return StampApiFp(this.configuration).putStamp(stampId, postRallyStampRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * UserApi - axios parameter creator
+ * @export
+ */
+export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary ユーザーを削除する
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteUser: async (userId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('deleteUser', 'userId', userId)
+            const localVarPath = `/users/{user_id}`
+                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary ユーザーを取得する
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUser: async (userId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('getUser', 'userId', userId)
+            const localVarPath = `/users/{user_id}`
+                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary ユーザーのスタンプ一覧を取得する
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserStamps: async (userId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('getUserStamps', 'userId', userId)
+            const localVarPath = `/users{user_id}/stamps`
+                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary ユーザー一覧を取得する
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUsers: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/users`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary ユーザーを登録する
+         * @param {PostUserRegisterRequest} postUserRegisterRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postUserRegister: async (postUserRegisterRequest: PostUserRegisterRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'postUserRegisterRequest' is not null or undefined
+            assertParamExists('postUserRegister', 'postUserRegisterRequest', postUserRegisterRequest)
+            const localVarPath = `/users`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(postUserRegisterRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * UserApi - functional programming interface
+ * @export
+ */
+export const UserApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary ユーザーを削除する
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteUser(userId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteUser200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteUser(userId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.deleteUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary ユーザーを取得する
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getUser(userId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUser(userId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.getUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary ユーザーのスタンプ一覧を取得する
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getUserStamps(userId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<StampSchema>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUserStamps(userId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.getUserStamps']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary ユーザー一覧を取得する
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getUsers(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<UserSchema>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUsers(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.getUsers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary ユーザーを登録する
+         * @param {PostUserRegisterRequest} postUserRegisterRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postUserRegister(postUserRegisterRequest: PostUserRegisterRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postUserRegister(postUserRegisterRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.postUserRegister']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * UserApi - factory interface
+ * @export
+ */
+export const UserApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = UserApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary ユーザーを削除する
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteUser(userId: string, options?: RawAxiosRequestConfig): AxiosPromise<DeleteUser200Response> {
+            return localVarFp.deleteUser(userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary ユーザーを取得する
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUser(userId: string, options?: RawAxiosRequestConfig): AxiosPromise<UserSchema> {
+            return localVarFp.getUser(userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary ユーザーのスタンプ一覧を取得する
+         * @param {string} userId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserStamps(userId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<StampSchema>> {
+            return localVarFp.getUserStamps(userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary ユーザー一覧を取得する
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUsers(options?: RawAxiosRequestConfig): AxiosPromise<Array<UserSchema>> {
+            return localVarFp.getUsers(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary ユーザーを登録する
+         * @param {PostUserRegisterRequest} postUserRegisterRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postUserRegister(postUserRegisterRequest: PostUserRegisterRequest, options?: RawAxiosRequestConfig): AxiosPromise<UserSchema> {
+            return localVarFp.postUserRegister(postUserRegisterRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * UserApi - object-oriented interface
+ * @export
+ * @class UserApi
+ * @extends {BaseAPI}
+ */
+export class UserApi extends BaseAPI {
+    /**
+     * 
+     * @summary ユーザーを削除する
+     * @param {string} userId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public deleteUser(userId: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).deleteUser(userId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Todoリストに追加する
-     * @param {PostTodoRequest} postTodoRequest 
+     * @summary ユーザーを取得する
+     * @param {string} userId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TodoApi
+     * @memberof UserApi
      */
-    public postTodo(postTodoRequest: PostTodoRequest, options?: RawAxiosRequestConfig) {
-        return TodoApiFp(this.configuration).postTodo(postTodoRequest, options).then((request) => request(this.axios, this.basePath));
+    public getUser(userId: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).getUser(userId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Todoリストを更新する
-     * @param {string} id 
-     * @param {TodoSchema} todoSchema 
+     * @summary ユーザーのスタンプ一覧を取得する
+     * @param {string} userId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TodoApi
+     * @memberof UserApi
      */
-    public putTodo(id: string, todoSchema: TodoSchema, options?: RawAxiosRequestConfig) {
-        return TodoApiFp(this.configuration).putTodo(id, todoSchema, options).then((request) => request(this.axios, this.basePath));
+    public getUserStamps(userId: string, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).getUserStamps(userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary ユーザー一覧を取得する
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public getUsers(options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).getUsers(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary ユーザーを登録する
+     * @param {PostUserRegisterRequest} postUserRegisterRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public postUserRegister(postUserRegisterRequest: PostUserRegisterRequest, options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).postUserRegister(postUserRegisterRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

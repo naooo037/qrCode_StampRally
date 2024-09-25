@@ -1,1 +1,0 @@
-export { TodoCardAdapter as TodoCard } from './TodoCard.adapter'
