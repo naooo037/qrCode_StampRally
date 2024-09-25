@@ -11,11 +11,7 @@ func InsertUser(newUser models.UserModel) (models.UserModel, error) {
 
 	newUser.Init()
 	
-	err := db.DB.Create(&newUser).Error
+	result := db.DB.Create(&newUser)
 
-	if err != nil {
-		return newUser, err
-	}
-
-	return newUser, nil
+	return newUser, result.Error
 }

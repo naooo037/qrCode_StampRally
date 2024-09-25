@@ -31,17 +31,7 @@ paths:
                 type: array
                 items:
                   type: object
-                  properties:
-                    id:
-                      type: string
-                    name:
-                      type: string
-                    rally_id:
-                      type: string
-                    CreatedAt:
-                      type: string
-                    UpdatedAt:
-                      type: string
+                  $ref: '#/components/schemas/userSchema'
         '400':
           description: 失敗
           content:
@@ -74,9 +64,7 @@ paths:
             application/json:
               schema:
                 type: object
-                properties:
-                  userId:
-                    type: string
+                $ref: '#/components/schemas/userSchema'
         '400':
           description: 失敗
           content:
@@ -105,20 +93,7 @@ paths:
             application/json:
               schema:
                 type: object
-                properties:
-                  user:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      name:
-                        type: string
-                      rally_id:
-                        type: string
-                      CreatedAt:
-                        type: string
-                      UpdatedAt:
-                        type: string
+                $ref: '#/components/schemas/userSchema'
         '400':
           description: 失敗
           content:
@@ -179,6 +154,15 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/stampSchema'
+        '400':
+          description: 失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
 
   /rallies:
     get:
@@ -227,9 +211,7 @@ paths:
             application/json:
               schema:
                 type: object
-                properties:
-                  rally:
-                    $ref: '#/components/schemas/rallySchema'
+                $ref: '#/components/schemas/rallySchema'
         '400':
           description: 失敗
           content:
@@ -258,6 +240,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/rallySchemaWithStamps'
+    delete:
+      summary: スタンプラリーを削除する
+      tags:
+        - Rally
+      operationId: delete-rally
+      parameters:
+        - name: rally_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: 失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
   /rallies/{rally_id}/stamps:
     get:
       summary: スタンプラリーのスタンプ一覧を取得する
@@ -301,7 +313,7 @@ paths:
                   type: string
                 description:
                   type: string
-                qrCode:
+                qr_code:
                   type: string
       responses:
         '200':
@@ -337,7 +349,7 @@ paths:
                   type: string
                 description:
                   type: string
-                qrCode:
+                qr_code:
                   type: string
       responses:
         '200':
@@ -346,9 +358,7 @@ paths:
             application/json:
               schema:
                 type: object
-                properties:
-                  stamp:
-                    $ref: '#/components/schemas/stampSchema'
+                $ref: '#/components/schemas/stampSchema'
     delete:
       summary: スタンプを削除する
       tags:
@@ -370,23 +380,23 @@ paths:
                 properties:
                   message:
                     type: string
-  /stamp/collect:
+  /stamp/{stamp_id}/collect/{user_id}:
     post:
       summary: スタンプを読み込む
       tags:
         - Stamp
       operationId: post-stamp-collect
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                stampId:
-                  type: string
-                userId:
-                  type: string
+      parameters:
+        - name: stamp_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
             description: 成功
@@ -412,7 +422,7 @@ components:
     rallySchema:
       type: object
       properties:
-        id:
+        Id:
           type: string
         name:
           type: string
@@ -425,13 +435,13 @@ components:
     stampSchema:
       type: object
       properties:
-        id:
+        Id:
           type: string
         name:
           type: string
         description:
           type: string
-        qrCode:
+        qr_code:
           type: string
         CreatedAt:
           type: string
@@ -446,3 +456,16 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/stampSchema'
+    userSchema:
+      type: object
+      properties:
+        Id:
+          type: string
+        name:
+          type: string
+        rally_id:
+          type: string
+        CreatedAt:
+          type: string
+        UpdatedAt:
+          type: string 

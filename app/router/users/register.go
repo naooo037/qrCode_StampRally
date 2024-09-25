@@ -18,7 +18,6 @@ func RegisterUser(c *gin.Context) {
 		})
 	}
 	
-	c.JSON(200, gin.H{
-		"userId": newUser.Id,
-	})
+	
+	c.JSON(200, newUser)
 }
