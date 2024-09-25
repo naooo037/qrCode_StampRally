@@ -1,27 +1,35 @@
 openapi: 3.0.0
 info:
-  title: QRコードスタンプラリーアプリケーション
-  description: QRコードスタンプラリーアプリケーションのAPI仕様書
+  title: Go×React Template
+  description: Go言語とReactを使ったWebアプリケーションのテンプレート
   version: '0.1'
 servers:
   - url: http://localhost:5173/api
     description: ローカル開発環境
 
 tags:
-  - name: User
-    description: ユーザーに関する操作
-  - name: Rally
-    description: スタンプラリーに関する操作
-  - name: Stamp
-    description: スタンプに関する操作
-
+  - name: Hello
+    description: Helloに関する操作
 paths:
-  /users:
+  /hello:
     get:
-      summary: ユーザー一覧を取得する
+      summary: Helloというメッセージを返す
       tags:
-        - User
-      operationId: get-users
+        - Hello
+      operationId: get-hello
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseMessage'
+  /hellos:
+    get:
+      summary: Helloというメッセージを複数返す
+      tags:
+        - Hello
+      operationId: get-hellos
       responses:
         '200':
           description: 成功
@@ -30,22 +38,30 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
-                  $ref: '#/components/schemas/userSchema'
-        '400':
-          description: 失敗
+                  $ref: '#/components/schemas/responseMessage'
+  /todo:
+    get:
+      summary: Todoリストを返す
+      tags:
+        - Todo
+      operationId: get-todo
+      responses:
+        '200':
+          description: 成功
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  error:
-                    type: string
+                  todos:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/todoSchema'
     post:
-      summary: ユーザーを登録する
+      summary: Todoリストに追加する
       tags:
-        - User
-      operationId: post-user-register
+        - Todo
+      operationId: post-todo
       requestBody:
         required: true
         content:
@@ -53,157 +69,13 @@ paths:
             schema:
               type: object
               properties:
-                name:
-                  type: string
-                rally_id:
-                  type: string
-      responses:
-        '200':
-          description: 成功
-          content:
-            application/json:
-              schema:
-                type: object
-                $ref: '#/components/schemas/userSchema'
-        '400':
-          description: 失敗
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-  /users/{user_id}:
-    get:
-      summary: ユーザーを取得する
-      tags:
-        - User
-      operationId: get-user
-      parameters:
-        - name: user_id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: 成功
-          content:
-            application/json:
-              schema:
-                type: object
-                $ref: '#/components/schemas/userSchema'
-        '400':
-          description: 失敗
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-    delete:
-      summary: ユーザーを削除する
-      tags:
-        - User
-      operationId: delete-user
-      parameters:
-        - name: user_id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: 成功
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-        '400':
-          description: 失敗
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-  /users{user_id}/stamps:
-    get:
-      summary: ユーザーのスタンプ一覧を取得する
-      tags:
-        - User
-      operationId: get-user-stamps
-      parameters:
-        - name: user_id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: 成功
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/stampSchema'
-        '400':
-          description: 失敗
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-
-  /rallies:
-    get:
-      summary: スタンプラリー一覧を取得する
-      tags:
-        - Rally
-      operationId: get-rallies
-      responses:
-        '200':
-          description: 成功
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/rallySchema'
-        '400':
-          description: 失敗
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-    post:
-      summary: スタンプラリーを作成する
-      tags:
-        - Rally
-      operationId: post-rally
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
+                title:
                   type: string
                 description:
                   type: string
+                  nullable: true
+                completed:
+                  type: boolean
       responses:
         '200':
           description: 成功
@@ -211,24 +83,17 @@ paths:
             application/json:
               schema:
                 type: object
-                $ref: '#/components/schemas/rallySchema'
-        '400':
-          description: 失敗
-          content:
-            application/json:
-              schema:
-                type: object
                 properties:
-                  error:
-                    type: string
-  /rallies/{rally_id}:
+                  todo:
+                    $ref: '#/components/schemas/todoSchema'
+  /todo/{id}:
     get:
-      summary: スタンプラリーを取得する
+      summary: Todoを返す
       tags:
-        - Rally
-      operationId: get-rally
+        - Todo
+      operationId: get-todo-id
       parameters:
-        - name: rally_id
+        - name: id
           in: path
           required: true
           schema:
@@ -239,14 +104,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/rallySchemaWithStamps'
+                type: object
+                properties:
+                  todo:
+                    $ref: '#/components/schemas/todoSchema'
     delete:
-      summary: スタンプラリーを削除する
+      summary: Todoリストから削除する
       tags:
-        - Rally
-      operationId: delete-rally
+        - Todo
+      operationId: delete-todo
       parameters:
-        - name: rally_id
+        - name: id
           in: path
           required: true
           schema:
@@ -257,83 +125,14 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-        '400':
-          description: 失敗
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-  /rallies/{rally_id}/stamps:
-    get:
-      summary: スタンプラリーのスタンプ一覧を取得する
-      tags:
-        - Rally
-      operationId: get-rally-stamps
-      parameters:
-        - name: rally_id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: 成功
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/stampSchema'
-    post:
-      summary: スタンプラリーにスタンプを追加する
-      tags:
-        - Rally
-      operationId: post-rally-stamp
-      parameters:
-        - name: rally_id
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                description:
-                  type: string
-                qr_code:
-                  type: string
-      responses:
-        '200':
-          description: 成功
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  stamp:
-                    $ref: '#/components/schemas/stampSchema'
-  
-  /stamp/{stamp_id}:
+                $ref: '#/components/schemas/responseMessage'
     put:
-      summary: スタンプを更新する
+      summary: Todoリストを更新する
       tags:
-        - Stamp
-      operationId: put-stamp
+        - Todo
+      operationId: put-todo
       parameters:
-        - name: stamp_id
+        - name: id
           in: path
           required: true
           schema:
@@ -343,33 +142,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                description:
-                  type: string
-                qr_code:
-                  type: string
-      responses:
-        '200':
-          description: 成功
-          content:
-            application/json:
-              schema:
-                type: object
-                $ref: '#/components/schemas/stampSchema'
-    delete:
-      summary: スタンプを削除する
-      tags:
-        - Stamp
-      operationId: delete-stamp
-      parameters:
-        - name: stamp_id
-          in: path
-          required: true
-          schema:
-            type: string
+              $ref: '#/components/schemas/todoSchema'
       responses:
         '200':
           description: 成功
@@ -378,94 +151,28 @@ paths:
               schema:
                 type: object
                 properties:
-                  message:
-                    type: string
-  /stamp/{stamp_id}/collect/{user_id}:
-    post:
-      summary: スタンプを読み込む
-      tags:
-        - Stamp
-      operationId: post-stamp-collect
-      parameters:
-        - name: stamp_id
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: user_id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-            description: 成功
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    message:
-                      type: string
-        '400':
-          description: 失敗
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
+                  todo:
+                    $ref: '#/components/schemas/todoSchema'
 
 components:
   schemas:
-    rallySchema:
+    responseMessage:
       type: object
       properties:
-        Id:
+        message:
           type: string
-        name:
+    todoSchema:
+      type: object
+      properties:
+        ID:
+          type: string
+        title:
           type: string
         description:
           type: string
+        completed:
+          type: boolean
         CreatedAt:
           type: string
         UpdatedAt:
           type: string
-    stampSchema:
-      type: object
-      properties:
-        Id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        qr_code:
-          type: string
-        CreatedAt:
-          type: string
-        UpdatedAt:
-          type: string
-    rallySchemaWithStamps:
-      allOf:
-        - $ref: '#/components/schemas/rallySchema'
-        - type: object
-          properties:
-            stamps:
-              type: array
-              items:
-                $ref: '#/components/schemas/stampSchema'
-    userSchema:
-      type: object
-      properties:
-        Id:
-          type: string
-        name:
-          type: string
-        rally_id:
-          type: string
-        CreatedAt:
-          type: string
-        UpdatedAt:
-          type: string 

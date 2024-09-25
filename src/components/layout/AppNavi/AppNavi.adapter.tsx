@@ -9,8 +9,8 @@ const naviButtons = [
 		href: '/',
 	},
 	{
-		children: 'カメラ',
-		href: '/camera',
+		children: 'Todo',
+		href: '/todo',
 	},
 ]
 

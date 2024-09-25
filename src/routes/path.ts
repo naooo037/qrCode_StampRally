@@ -1,5 +1,6 @@
 export const path = {
 	root: () => '/',
 	home: () => '/home',
-	camera: () => '/camera',
+	todos: () => '/todo',
+	todo: (id: string) => `/todo/${id}`,
 }
