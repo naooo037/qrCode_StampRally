@@ -8,7 +8,7 @@ export const HeaderComponent: FC = () => {
 	return (
 		<MyHeader
 			logo={<Logo />}
-			tenants={[{ id: 'template', name: 'Go x React template' }]}
+			tenants={[{ id: 'template', name: 'QRコード スタンプラリー in 福山大学' }]}
 		></MyHeader>
 	)
 }
