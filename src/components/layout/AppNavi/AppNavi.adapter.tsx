@@ -8,6 +8,10 @@ const naviButtons = [
 		children: 'ホーム',
 		href: '/',
 	},
+	{
+		children: 'Todo',
+		href: '/todo',
+	},
 ]
 
 export const AppNaviAdapter: FC = () => {
