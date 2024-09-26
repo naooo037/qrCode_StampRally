@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import { ErrorFallback } from '@/components/ErrorFallback'
+import { SigninAdapter } from '@/components/SigninAdapter'
 
 import { Home } from './Home'
 
@@ -11,8 +12,10 @@ const HomeAdapter = () => {
 
 export const HomeAdapterErrorBoundary: FC = () => {
 	return (
-		<ErrorBoundary FallbackComponent={ErrorFallback}>
-			<HomeAdapter />
-		</ErrorBoundary>
+		<SigninAdapter>
+			<ErrorBoundary FallbackComponent={ErrorFallback}>
+				<HomeAdapter />
+			</ErrorBoundary>
+		</SigninAdapter>
 	)
 }
