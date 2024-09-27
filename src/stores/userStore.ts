@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 type State = {
   userId: string | undefined;
-  name: string;
+  name: string | undefined;
   rallyId: string | undefined;
 };
 
@@ -14,7 +14,7 @@ type Action = {
 
 export const useTodoStore = create<State & Action>()((set) => ({
   userId: undefined,
-  name: "名無しさん",
+  name: undefined,
   rallyId: undefined,
 
   setUserId: (userId) => set({ userId }),
