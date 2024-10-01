@@ -1,7 +1,6 @@
 import { useRoutes } from 'react-router-dom'
 
 import { Layout } from '@/components/layout'
-import { Camera } from '@/pages/Camera'
 import { Home } from '@/pages/Home'
 
 import { path } from './path'
@@ -19,10 +18,6 @@ export const Routes = () =>
 				{
 					path: path.home(),
 					element: <Home />,
-				},
-				{
-					path: path.camera(),
-					element: <Camera />,
 				},
 			],
 		},

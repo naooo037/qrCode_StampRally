@@ -1,5 +1,5 @@
 /* tslint:disable */
-/* eslint-disable */
+ 
 /**
  * QRコードスタンプラリーアプリケーション
  * QRコードスタンプラリーアプリケーションのAPI仕様書
