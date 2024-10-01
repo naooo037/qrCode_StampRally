@@ -31,8 +31,8 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 			canvas.height = canvas.clientHeight
 
 			// 四角形の枠を描画
-			const rectWidth = 300
-			const rectHeight = 300
+			const rectWidth = Math.min(canvas.width, canvas.height) * 0.6
+			const rectHeight = Math.min(canvas.width, canvas.height) * 0.6
 			const x = (canvas.width - rectWidth) / 2
 			const y = (canvas.height - rectHeight) / 2
 
