@@ -3,6 +3,8 @@ import { useCookies } from 'react-cookie'
 import { Button, Header, HeaderDropdownMenuButton } from 'smarthr-ui'
 import styled from 'styled-components'
 
+import { migrationAct } from '@/feature/migration'
+
 import { Logo } from './Logo'
 
 export const HeaderComponent: FC = () => {
@@ -14,7 +16,7 @@ export const HeaderComponent: FC = () => {
 			tenants={[{ id: 'template', name: 'QRコード スタンプラリー in 福山大学' }]}
 		>
 			<HeaderDropdownMenuButton label={cookies.name}>
-				<Button>migrate</Button>
+				<Button onClick={() => migrationAct()}>Migration</Button>
 			</HeaderDropdownMenuButton>
 		</MyHeader>
 	)
