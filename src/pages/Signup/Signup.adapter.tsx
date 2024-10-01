@@ -1,6 +1,8 @@
 import { FC, useEffect } from 'react'
+import { useCookies } from 'react-cookie'
 import { ErrorBoundary } from 'react-error-boundary'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 import { ErrorFallback } from '@/components/ErrorFallback'
 import { useRegisterUserAction } from '@/hooks/useCreateUserAction'
@@ -27,6 +29,7 @@ const SignupAdapter = () => {
 			name: '名無し',
 		},
 	})
+
 	useEffect(() => {
 		if (selectOptions.length === 0) {
 			return
@@ -35,10 +38,17 @@ const SignupAdapter = () => {
 	}, [selectOptions])
 
 	const useRegisterUser = useRegisterUserAction()
-
 	const onClickAction: SubmitHandler<SignupType> = (data) => {
 		useRegisterUser(data.rally_id, data.name)
 	}
+
+	const [cookies] = useCookies()
+	const navigate = useNavigate()
+	useEffect(() => {
+		if (cookies.userId && cookies.rallyId) {
+			navigate('/')
+		}
+	})
 
 	return (
 		<Signup
