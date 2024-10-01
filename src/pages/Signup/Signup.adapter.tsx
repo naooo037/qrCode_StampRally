@@ -1,8 +1,9 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { ErrorFallback } from '@/components/ErrorFallback'
+import { useRegisterUserAction } from '@/hooks/useCreateUserAction'
 import { useFetchRallies } from '@/hooks/useFetchRallies'
 
 import { Signup } from './Signup'
@@ -18,16 +19,25 @@ const SignupAdapter = () => {
 	const {
 		register,
 		handleSubmit,
+		setValue,
 		formState: { errors },
 	} = useForm<SignupType>({
 		defaultValues: {
-			rallyId: selectOptions[0]?.label || '',
+			rally_id: '',
 			name: '名無し',
 		},
 	})
+	useEffect(() => {
+		if (selectOptions.length === 0) {
+			return
+		}
+		setValue('rally_id', selectOptions[0].value)
+	}, [selectOptions])
+
+	const useRegisterUser = useRegisterUserAction()
 
 	const onClickAction: SubmitHandler<SignupType> = (data) => {
-		console.log(data)
+		useRegisterUser(data.rally_id, data.name)
 	}
 
 	return (

@@ -17,10 +17,11 @@ export const Signup: FC<Props> = ({ register, onClickAction, options }) => (
 		<h2>参加するスタンプラリーとニックネームを入力してください</h2>
 		<form {...register} onSubmit={onClickAction}>
 			<FormControl title='スタンプラリー'>
-				<Select width={'100%'} options={options} {...register('rallyId')} />
+				<Select width={'100%'} options={options} {...register('rally_id')} />
 			</FormControl>
 			<FormControl title='ニックネーム'>
 				<Input
+					autoComplete='off'
 					width={'100%'}
 					{...register('name', {
 						required: { value: true, message: 'ニックネームは必須です' },

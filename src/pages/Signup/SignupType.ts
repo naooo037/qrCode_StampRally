@@ -1,4 +1,4 @@
 export type SignupType = {
   name: string;
-  rallyId: string;
+  rally_id: string;
 };
