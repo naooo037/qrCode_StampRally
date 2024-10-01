@@ -8,7 +8,7 @@ import { Home } from './Home'
 const HomeAdapter = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 
-	return <Home isOpen={isOpen} setIsOpen={setIsOpen}/>
+	return <Home isOpen={isOpen} setIsOpen={setIsOpen} />
 }
 
 export const HomeAdapterErrorBoundary: FC = () => {

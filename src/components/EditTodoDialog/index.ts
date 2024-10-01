@@ -1,1 +1,1 @@
-export { EditTodoDialogAdapter as EditTodoDialog } from "./EditTodoDialog.adapter"
+export { EditTodoDialogAdapter as EditTodoDialog } from './EditTodoDialog.adapter'

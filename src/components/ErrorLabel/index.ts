@@ -1,1 +1,1 @@
-export { ErrorLabel } from "./ErrorLabel"
+export { ErrorLabel } from './ErrorLabel'

@@ -27,8 +27,8 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 			// Canvasの全体をクリア
 			context.clearRect(0, 0, canvas.width, canvas.height)
 
-			canvas.width=canvas.clientWidth
-			canvas.height=canvas.clientHeight
+			canvas.width = canvas.clientWidth
+			canvas.height = canvas.clientHeight
 
 			// 四角形の枠を描画
 			const rectWidth = 300
@@ -62,7 +62,6 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 
 		//画像が読み込まれたときの処理
 		img.onload = function () {
-
 			console.log(img.width, img.height)
 
 			//Canvasの参照を取得
@@ -137,8 +136,8 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 	}, [isOpen])
 
 	useEffect(() => {
-		window.addEventListener("resize", drawSquare)
-		return () => window.removeEventListener("resize", drawSquare)
+		window.addEventListener('resize', drawSquare)
+		return () => window.removeEventListener('resize', drawSquare)
 	}, [])
 
 	return (

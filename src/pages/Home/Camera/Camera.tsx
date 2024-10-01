@@ -16,14 +16,21 @@ type Props = {
 	canvasRef: React.RefObject<HTMLCanvasElement>
 	capture: () => void
 }
-export const Camera: FC<Props> = ({ isOpen, onClickClose, capturedImage, webcamRef, canvasRef, capture }) => (
+export const Camera: FC<Props> = ({
+	isOpen,
+	onClickClose,
+	capturedImage,
+	webcamRef,
+	canvasRef,
+	capture,
+}) => (
 	<ActionDialog
 		isOpen={isOpen}
 		title='ActionDialog'
 		actionText='撮影'
 		onClickAction={(closeDialog) => {
 			capture()
-			// closeDialog()
+			closeDialog()
 		}}
 		onClickClose={onClickClose}
 		width='80vw'
@@ -43,12 +50,10 @@ export const Camera: FC<Props> = ({ isOpen, onClickClose, capturedImage, webcamR
 					//スクリーンショットの形式をJPEGに設定
 					screenshotFormat='image/jpeg'
 				/>
-			) : null
-			}
+			) : null}
 			<canvas
 				//Canvasの参照を設定
 				ref={canvasRef}
-
 				//Canvasのスタイルを設定
 				style={{ position: 'absolute', left: '0px', top: '0px', width: '100%', height: '100%' }}
 			></canvas>
