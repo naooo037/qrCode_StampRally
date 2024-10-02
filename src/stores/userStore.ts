@@ -12,7 +12,7 @@ type Action = {
 	setRallyId: (rallyId: string) => void
 }
 
-export const useTodoStore = create<State & Action>()((set) => ({
+export const useUserStore = create<State & Action>()((set) => ({
 	userId: undefined,
 	name: undefined,
 	rallyId: undefined,
