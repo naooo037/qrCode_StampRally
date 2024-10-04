@@ -29,13 +29,11 @@ func GetUserStamp(id string) ([]CollectStampsModel, error) {
 
 	// ユーザーが持っているスタンプを取得
 	var userCollectExists bool
-  userCollectCheckResult := db.DB.Model(&models.UserCollectModel{}).
+	
+  db.DB.Model(&models.UserCollectModel{}).
       Select("count(*) > 0").
       Where("user_id = ?", id).
       Find(&userCollectExists)
-  if userCollectCheckResult.Error != nil {
-      return nil, userCollectCheckResult.Error
-  }
   
   // ユーザーが存在しない場合、空のリストを返す
 	var userCollect []models.UserCollectModel
