@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { GetUserStamps200ResponseInner } from '@/.openapi/api';
 
-import { StampCard } from './stampCard';
+import { StampCard } from './StampCard';
 
 type Props = {
 	stamps: GetUserStamps200ResponseInner[]
