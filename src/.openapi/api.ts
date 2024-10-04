@@ -49,6 +49,55 @@ export interface DeleteUser200Response {
 /**
  *
  * @export
+ * @interface GetUserStamps200ResponseInner
+ */
+export interface GetUserStamps200ResponseInner {
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GetUserStamps200ResponseInner
+	 */
+	Id?: string
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GetUserStamps200ResponseInner
+	 */
+	name?: string
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GetUserStamps200ResponseInner
+	 */
+	description?: string
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GetUserStamps200ResponseInner
+	 */
+	qr_code?: string
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GetUserStamps200ResponseInner
+	 */
+	CreatedAt?: string
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GetUserStamps200ResponseInner
+	 */
+	UpdatedAt?: string
+	/**
+	 *
+	 * @type {string}
+	 * @memberof GetUserStamps200ResponseInner
+	 */
+	is_collected?: string
+}
+/**
+ *
+ * @export
  * @interface GetUsers400Response
  */
 export interface GetUsers400Response {
@@ -1353,7 +1402,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 		): Promise<RequestArgs> => {
 			// verify required parameter 'userId' is not null or undefined
 			assertParamExists('getUserStamps', 'userId', userId)
-			const localVarPath = `/users{user_id}/stamps`.replace(
+			const localVarPath = `/users/{user_id}/stamps`.replace(
 				`{${'user_id'}}`,
 				encodeURIComponent(String(userId))
 			)
@@ -1524,7 +1573,12 @@ export const UserApiFp = function (configuration?: Configuration) {
 		async getUserStamps(
 			userId: string,
 			options?: RawAxiosRequestConfig
-		): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<StampSchema>>> {
+		): Promise<
+			(
+				axios?: AxiosInstance,
+				basePath?: string
+			) => AxiosPromise<Array<GetUserStamps200ResponseInner>>
+		> {
 			const localVarAxiosArgs = await localVarAxiosParamCreator.getUserStamps(userId, options)
 			const localVarOperationServerIndex = configuration?.serverIndex ?? 0
 			const localVarOperationServerBasePath =
@@ -1631,7 +1685,7 @@ export const UserApiFactory = function (
 		getUserStamps(
 			userId: string,
 			options?: RawAxiosRequestConfig
-		): AxiosPromise<Array<StampSchema>> {
+		): AxiosPromise<Array<GetUserStamps200ResponseInner>> {
 			return localVarFp.getUserStamps(userId, options).then((request) => request(axios, basePath))
 		},
 		/**
