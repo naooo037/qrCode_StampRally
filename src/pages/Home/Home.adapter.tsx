@@ -16,7 +16,9 @@ const HomeAdapter = () => {
 
 	const stamps = useFetchRallyStamps(userId)
 
-	return <Home stamps={stamps} isOpen={isOpen} setIsOpen={setIsOpen} />
+	console.log(stamps)
+
+	return <Home stamps={stamps || []} isOpen={isOpen} setIsOpen={setIsOpen} />
 }
 
 export const HomeAdapterErrorBoundary: FC = () => {
