@@ -1,10 +1,11 @@
 import { FC } from 'react'
 import { Button } from 'smarthr-ui'
+import styled from 'styled-components'
 
 import { GetUserStamps200ResponseInner } from '@/.openapi/api'
 
 import { Camera } from './Camera'
-import { StampCard } from './stampCard'
+import { StampCard } from './StampCard'
 
 type Props = {
 	stamps: GetUserStamps200ResponseInner[]
@@ -17,7 +18,26 @@ export const Home: FC<Props> = ({ stamps, isOpen, setIsOpen }) => (
 		<h1>Home</h1>
 		<p>Welcome to the Home page!</p>
 		<StampCard stamps={stamps} />
-		<Button onClick={() => setIsOpen(true)}>カメラ</Button>
+		<StyledContainer>
+			<StyledButton onClick={() => setIsOpen(true)} variant='primary'>
+				カメラ
+			</StyledButton>
+		</StyledContainer>
 		<Camera isOpen={isOpen} setIsOpen={setIsOpen} />
 	</div>
 )
+
+const StyledContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+`
+
+const StyledButton = styled(Button)`
+	fontsize: '24px';
+	padding: '20px 40px';
+	width: 100px;
+	height: 50px;
+	border-radius: '10px';
+`
