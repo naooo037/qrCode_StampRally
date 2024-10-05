@@ -16,8 +16,6 @@ const HomeAdapter = () => {
 
 	const stamps = useFetchRallyStamps(userId)
 
-	console.log(stamps)
-
 	return <Home stamps={stamps || []} isOpen={isOpen} setIsOpen={setIsOpen} />
 }
 
