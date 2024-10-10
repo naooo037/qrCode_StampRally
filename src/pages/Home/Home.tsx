@@ -17,7 +17,7 @@ export const Home: FC<Props> = ({ stamps, isOpen, setIsOpen }) => (
 	<div>
 		<h1>Home</h1>
 		<p>Welcome to the Home page!</p>
-		<StampCard stamps={stamps} />
+		<StampCard stamps={stamps}/>
 		<StyledContainer>
 			<StyledButton onClick={() => setIsOpen(true)} variant='primary'>
 				カメラ
