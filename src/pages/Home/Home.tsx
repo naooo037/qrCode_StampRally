@@ -32,6 +32,7 @@ const StyledContainer = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	margin:30px;
 `
 
 const StyledButton = styled(Button)`
