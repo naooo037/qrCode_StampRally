@@ -4,7 +4,7 @@ import { Button } from 'smarthr-ui'
 import { GetUserStamps200ResponseInner } from '@/.openapi/api'
 
 import { Camera } from './Camera'
-import { StampCard } from './stampCard'
+import { StampCard } from './StampCard'
 
 type Props = {
 	stamps: GetUserStamps200ResponseInner[]

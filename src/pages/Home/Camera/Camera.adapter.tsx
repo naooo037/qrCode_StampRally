@@ -2,6 +2,8 @@ import jsQR from 'jsqr'
 import { FC, useEffect, useRef, useState } from 'react'
 import Webcam from 'react-webcam'
 
+import { useCollectStampAction } from '@/hooks/useCollectStampAction'
+
 import { Camera } from './Camera'
 
 type Props = {
@@ -17,6 +19,11 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null)
 	//キャプチャした画像の状態を管理
 	const [capturedImage, setCapturedImage] = useState<string | null>(null)
+
+	const [stampId, setStampId] = useState<string | undefined>(undefined)
+
+	const useCollectStamp = useCollectStampAction()
+
 
 	// 四角枠の描画ロジック
 	const drawSquare = () => {
@@ -42,7 +49,7 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 		}
 	}
 
-	const capture = () => {
+	const capture = (): string | undefined => {
 		//300x300の画像を取得
 		const imageSrc = webcamRef.current?.getScreenshot({ width: 300, height: 300 })
 
@@ -92,6 +99,7 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 
 			if (qrCodeData) {
 				console.log('QRコードの内容:', qrCodeData.data, qrCodeData.location)
+				
 
 				//赤い線でQRコードの四隅を囲む
 				context.strokeStyle = 'red'
@@ -119,12 +127,20 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 
 				//パスを描画
 				context.stroke()
+				
+				const urlObj = new URL(qrCodeData.data);
+				const prarams = new URLSearchParams(urlObj.search);
+				const stampId = prarams.get("stampId")
+				if(stampId === null) {
+					return
+				}
+				setStampId(stampId)
 			} else {
 				console.log('QRコードが見つかりませんでした')
 			}
 		}
 	}
-
+	
 	const onClickClose = () => {
 		setIsOpen(false)
 		setCapturedImage(null)
@@ -136,6 +152,19 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 	}, [isOpen])
 
 	useEffect(() => {
+		if(stampId === undefined) {
+			return
+		}
+		useCollectStamp(stampId)
+			.then((d) => {
+				console.log(d)
+				onClickClose()
+			}).catch(() => {
+				onClickClose()
+			})
+	}, [stampId])
+
+	useEffect(() => {
 		window.addEventListener('resize', drawSquare)
 		return () => window.removeEventListener('resize', drawSquare)
 	}, [])
@@ -143,11 +172,11 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 	return (
 		<Camera
 			isOpen={isOpen}
+			onClickAction={capture}
 			onClickClose={onClickClose}
 			capturedImage={capturedImage}
 			webcamRef={webcamRef}
 			canvasRef={canvasRef}
-			capture={capture}
 		/>
 	)
 }
