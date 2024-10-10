@@ -14,9 +14,9 @@ const HomeAdapter = () => {
 	const [cookies] = useCookies()
 	const userId = useUserStore((state) => state.userId) || cookies.userId
 
-	const stamps = useFetchRallyStamps(userId)
+	const [stamps, setStamps] = useFetchRallyStamps(userId)
 
-	return <Home stamps={stamps || []} isOpen={isOpen} setIsOpen={setIsOpen} />
+	return <Home stamps={stamps || []} setStamps={setStamps} isOpen={isOpen} setIsOpen={setIsOpen} />
 }
 
 export const HomeAdapterErrorBoundary: FC = () => {

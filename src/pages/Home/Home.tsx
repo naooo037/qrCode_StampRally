@@ -9,21 +9,20 @@ import { StampCard } from './StampCard'
 
 type Props = {
 	stamps: GetUserStamps200ResponseInner[]
+	setStamps: React.Dispatch<React.SetStateAction<GetUserStamps200ResponseInner[] | undefined>>
 	isOpen: boolean
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const Home: FC<Props> = ({ stamps, isOpen, setIsOpen }) => (
+export const Home: FC<Props> = ({ stamps, setStamps, isOpen, setIsOpen }) => (
 	<div>
-		<h1>Home</h1>
-		<p>Welcome to the Home page!</p>
 		<StampCard stamps={stamps} />
 		<StyledContainer>
 			<StyledButton onClick={() => setIsOpen(true)} variant='primary'>
 				カメラ
 			</StyledButton>
 		</StyledContainer>
-		<Camera isOpen={isOpen} setIsOpen={setIsOpen} />
+		<Camera setStamps={setStamps} isOpen={isOpen} setIsOpen={setIsOpen} />
 	</div>
 )
 
@@ -32,7 +31,7 @@ const StyledContainer = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin:30px;
+	margin: 30px;
 `
 
 const StyledButton = styled(Button)`
