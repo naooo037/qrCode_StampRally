@@ -10,28 +10,25 @@ const videoConstraints = {
 
 type Props = {
 	isOpen: boolean
+	onClickAction: () => void
 	onClickClose: () => void
 	capturedImage: string | null
 	webcamRef: React.RefObject<Webcam>
 	canvasRef: React.RefObject<HTMLCanvasElement>
-	capture: () => void
 }
 export const Camera: FC<Props> = ({
 	isOpen,
+	onClickAction,
 	onClickClose,
 	capturedImage,
 	webcamRef,
 	canvasRef,
-	capture,
 }) => (
 	<ActionDialog
 		isOpen={isOpen}
 		title='ActionDialog'
 		actionText='撮影'
-		onClickAction={(closeDialog) => {
-			capture()
-			closeDialog()
-		}}
+		onClickAction={onClickAction}
 		onClickClose={onClickClose}
 		width='80vw'
 	>

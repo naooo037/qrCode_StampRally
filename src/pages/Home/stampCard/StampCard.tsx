@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Base, Cluster} from 'smarthr-ui'
+import { Base, Cluster } from 'smarthr-ui'
 import styled from 'styled-components'
 
 import { GetUserStamps200ResponseInner } from '@/.openapi/api'
@@ -13,8 +13,14 @@ type Props = {
 export const StampCard: FC<Props> = ({ stamps }) => (
 	<StyledStack>
 		<StyledCluster gap='XS'>
-			{stamps.map((_, i) => (
-				<ColorBox key={i} />
+			{stamps.map((stamp, i) => (
+				<ColorBox key={i}>
+					{stamp.is_collected ? (
+						<StyledImageWrapper>
+							<StyledImage src='/仮画像.jpg' alt='Collected Stamp' />
+						</StyledImageWrapper>
+					) : null}
+				</ColorBox>
 			))}
 		</StyledCluster>
 	</StyledStack>
@@ -25,17 +31,33 @@ const StyledStack = styled(Base)`
 `
 
 const ColorBox = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	border-radius: 20px;
-  border: 3px solid;
-  border-color: black;
+	border: 3px solid;
+	border-color: black;
 	background-color: white;
-	color: white;
 	width: 100px;
 	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden; /* 画像のはみ出しを防ぐ */
 `
+
+const StyledImageWrapper = styled.div`
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+`
+
+const StyledImage = styled.img`
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain; /* 縦横比を維持してボックス内に収める */
+`
+
 const StyledCluster = styled(Cluster)`
-  justify-content: center;
+	justify-content: center;
 `
