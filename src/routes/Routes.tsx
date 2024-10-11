@@ -2,8 +2,7 @@ import { useRoutes } from 'react-router-dom'
 
 import { Layout } from '@/components/layout'
 import { Home } from '@/pages/Home'
-import { Todo } from '@/pages/Todo'
-import { Todos } from '@/pages/Todos'
+import { Signup } from '@/pages/Signup'
 
 import { path } from './path'
 
@@ -22,8 +21,8 @@ export const Routes = () =>
 					element: <Todo />,
 				},
 				{
-					path: path.todos(),
-					element: <Todos />,
+					path: path.signup(),
+					element: <Signup />,
 				},
 			],
 		},

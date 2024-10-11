@@ -28,8 +28,73 @@ paths:
     get:
       summary: Helloというメッセージを複数返す
       tags:
-        - Hello
-      operationId: get-hellos
+        - User
+      operationId: get-user
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/userSchema'
+        '400':
+          description: 失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    delete:
+      summary: ユーザーを削除する
+      tags:
+        - User
+      operationId: delete-user
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: 失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /users/{user_id}/stamps:
+    get:
+      summary: ユーザーのスタンプ一覧を取得する
+      tags:
+        - User
+      operationId: get-user-stamps
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: 成功
@@ -38,8 +103,23 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/responseMessage'
-  /todo:
+                  allOf:
+                    - $ref: '#/components/schemas/stampSchema'
+                    - type: object
+                      properties:
+                        is_collected:
+                          type: string
+        '400':
+          description: 失敗
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /rallies:
     get:
       summary: Todoリストを返す
       tags:

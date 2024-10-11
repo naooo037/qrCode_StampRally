@@ -1,0 +1,1 @@
+export { StampCardAdapter as StampCard } from "./StampCard.adapter"

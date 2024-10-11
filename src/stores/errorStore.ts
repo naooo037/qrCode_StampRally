@@ -1,23 +1,23 @@
-import { create } from 'zustand';
+import { create } from 'zustand'
 
 export type ErrorSchema = {
-  status: number;
-  title: string;
-  message: string;
-};
+	status: number
+	title: string
+	message: string
+}
 
 type State = {
-  error: ErrorSchema | undefined;
-};
+	error: ErrorSchema | undefined
+}
 
 type Action = {
-  setError: (error: ErrorSchema) => void;
-  clearError: () => void;
-};
+	setError: (error: ErrorSchema) => void
+	clearError: () => void
+}
 
 export const useErrorStore = create<State & Action>()((set) => ({
-  error: undefined,
+	error: undefined,
 
-  setError: (error) => set({ error }),
-  clearError: () => set({ error: undefined }),
-}));
+	setError: (error) => set({ error }),
+	clearError: () => set({ error: undefined }),
+}))

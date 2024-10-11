@@ -1,18 +1,30 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
+import { useCookies } from 'react-cookie'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import { ErrorFallback } from '@/components/ErrorFallback'
+import { SigninAdapter } from '@/components/SigninAdapter'
+import { useFetchRallyStamps } from '@/hooks/useFetchRallyStamps'
+import { useUserStore } from '@/stores/userStore'
 
 import { Home } from './Home'
 
 const HomeAdapter = () => {
-	return <Home />
+	const [isOpen, setIsOpen] = useState<boolean>(false)
+	const [cookies] = useCookies()
+	const userId = useUserStore((state) => state.userId) || cookies.userId
+
+	const [stamps, setStamps] = useFetchRallyStamps(userId)
+
+	return <Home stamps={stamps || []} setStamps={setStamps} isOpen={isOpen} setIsOpen={setIsOpen} />
 }
 
 export const HomeAdapterErrorBoundary: FC = () => {
 	return (
-		<ErrorBoundary FallbackComponent={ErrorFallback}>
-			<HomeAdapter />
-		</ErrorBoundary>
+		<SigninAdapter>
+			<ErrorBoundary FallbackComponent={ErrorFallback}>
+				<HomeAdapter />
+			</ErrorBoundary>
+		</SigninAdapter>
 	)
 }

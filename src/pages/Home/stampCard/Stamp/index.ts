@@ -1,0 +1,1 @@
+export { StampAdapter as Stamp } from './Stamp.adapter'
