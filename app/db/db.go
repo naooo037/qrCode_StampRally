@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/itojun-1230/go_react_template/app/models"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-
 )
 
 var DB *gorm.DB
@@ -31,6 +31,8 @@ func InitializeDB() (*gorm.DB, error) {
 	if err != nil {
 		fmt.Println("Failed to connect to database:", err)
 	}
+
+	DB.AutoMigrate(&models.UserCollectModel{})
 	
   return DB, nil
 }
