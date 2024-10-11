@@ -2,16 +2,19 @@ import jsQR from 'jsqr'
 import { FC, useEffect, useRef, useState } from 'react'
 import Webcam from 'react-webcam'
 
+import { GetUserStamps200ResponseInner } from '@/.openapi/api'
+
 import { useCollectStampAction } from '@/hooks/useCollectStampAction'
 
 import { Camera } from './Camera'
 
 type Props = {
+	setStamps: React.Dispatch<React.SetStateAction<GetUserStamps200ResponseInner[] | undefined>>
 	isOpen: boolean
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
+export const CameraAdapter: FC<Props> = ({ setStamps, isOpen, setIsOpen }) => {
 	//Webcamの参照を作成
 	const webcamRef = useRef<Webcam>(null)
 
@@ -23,7 +26,6 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 	const [stampId, setStampId] = useState<string | undefined>(undefined)
 
 	const useCollectStamp = useCollectStampAction()
-
 
 	// 四角枠の描画ロジック
 	const drawSquare = () => {
@@ -69,8 +71,6 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 
 		//画像が読み込まれたときの処理
 		img.onload = function () {
-			console.log(img.width, img.height)
-
 			//Canvasの参照を取得
 			const canvas = canvasRef.current
 			//2Dコンテキストを取得
@@ -99,7 +99,6 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 
 			if (qrCodeData) {
 				console.log('QRコードの内容:', qrCodeData.data, qrCodeData.location)
-				
 
 				//赤い線でQRコードの四隅を囲む
 				context.strokeStyle = 'red'
@@ -127,11 +126,11 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 
 				//パスを描画
 				context.stroke()
-				
-				const urlObj = new URL(qrCodeData.data);
-				const prarams = new URLSearchParams(urlObj.search);
-				const stampId = prarams.get("stampId")
-				if(stampId === null) {
+
+				const urlObj = new URL(qrCodeData.data)
+				const prarams = new URLSearchParams(urlObj.search)
+				const stampId = prarams.get('stampId')
+				if (stampId === null) {
 					return
 				}
 				setStampId(stampId)
@@ -140,7 +139,7 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 			}
 		}
 	}
-	
+
 	const onClickClose = () => {
 		setIsOpen(false)
 		setCapturedImage(null)
@@ -152,14 +151,27 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 	}, [isOpen])
 
 	useEffect(() => {
-		if(stampId === undefined) {
+		if (stampId === undefined) {
 			return
 		}
 		useCollectStamp(stampId)
-			.then((d) => {
-				console.log(d)
+			.then(async () => {
+				await sleep(1000)
+				setStamps((prev) => {
+					if (!prev) {
+						return
+					}
+					return prev.map((stamp) => {
+						if (stamp.Id === stampId) {
+							return { ...stamp, isCollected: true }
+						}
+						return stamp
+					})
+				})
+				location.reload()
 				onClickClose()
-			}).catch(() => {
+			})
+			.catch(() => {
 				onClickClose()
 			})
 	}, [stampId])
@@ -180,3 +192,5 @@ export const CameraAdapter: FC<Props> = ({ isOpen, setIsOpen }) => {
 		/>
 	)
 }
+
+const sleep = (msec: number) => new Promise((resolve) => setTimeout(resolve, msec))

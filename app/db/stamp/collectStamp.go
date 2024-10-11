@@ -23,6 +23,7 @@ func CollectStamp(stamp_id string, user_id string) (models.UserCollectModel, err
 	var user models.UserModel
 	if err := tx.First(&user, "id = ?", user_id).Error; err != nil {
 		tx.Rollback()
+		fmt.Println("Failed to find user_id: ", user_id)
 		return models.UserCollectModel{}, fmt.Errorf("user_id %s does not exist: %w", user_id, err)
 	}
 
@@ -39,10 +40,7 @@ func CollectStamp(stamp_id string, user_id string) (models.UserCollectModel, err
 		return userCollect, err
 	}
 
-	// コミットしてトランザクションを終了
-	if err := tx.Commit().Error; err != nil {
-		return userCollect, err
-	}
+	tx.Commit()
 
 	return userCollect, nil
 }
