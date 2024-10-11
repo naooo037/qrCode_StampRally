@@ -10,7 +10,7 @@ type Props = {
 export const MyAppNavi: FC<Props> = ({ naviButtons }) => {
 	return (
 		<Wrapper>
-			<AppNavi label='ページタブ' buttons={naviButtons} displayDropdownCaret />
+			<AppNavi label='template' buttons={naviButtons} displayDropdownCaret />
 		</Wrapper>
 	)
 }

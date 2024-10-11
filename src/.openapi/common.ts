@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * QRコードスタンプラリーアプリケーション
- * QRコードスタンプラリーアプリケーションのAPI仕様書
+ * Go×React Template
+ * Go言語とReactを使ったWebアプリケーションのテンプレート
  *
  * The version of the OpenAPI document: 0.1
  *

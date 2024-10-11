@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * QRコードスタンプラリーアプリケーション
- * QRコードスタンプラリーアプリケーションのAPI仕様書
+ * Go×React Template
+ * Go言語とReactを使ったWebアプリケーションのテンプレート
  *
  * The version of the OpenAPI document: 0.1
  *
@@ -36,7 +36,7 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  *
  * @export
- * @interface DeleteUser200Response
+ * @interface GetTodo200Response
  */
 export interface DeleteUser200Response {
 	/**
@@ -98,7 +98,7 @@ export interface GetUserStamps200ResponseInner {
 /**
  *
  * @export
- * @interface GetUsers400Response
+ * @interface PostTodo200Response
  */
 export interface GetUsers400Response {
 	/**
@@ -111,7 +111,7 @@ export interface GetUsers400Response {
 /**
  *
  * @export
- * @interface PostRallyRequest
+ * @interface PostTodoRequest
  */
 export interface PostRallyRequest {
 	/**
@@ -143,7 +143,7 @@ export interface PostRallyStamp200Response {
 /**
  *
  * @export
- * @interface PostRallyStampRequest
+ * @interface ResponseMessage
  */
 export interface PostRallyStampRequest {
 	/**
@@ -168,7 +168,7 @@ export interface PostRallyStampRequest {
 /**
  *
  * @export
- * @interface PostUserRegisterRequest
+ * @interface TodoSchema
  */
 export interface PostUserRegisterRequest {
 	/**
@@ -346,7 +346,7 @@ export interface UserSchema {
 }
 
 /**
- * RallyApi - axios parameter creator
+ * HelloApi - axios parameter creator
  * @export
  */
 export const RallyApiAxiosParamCreator = function (configuration?: Configuration) {
@@ -761,7 +761,7 @@ export const RallyApiFp = function (configuration?: Configuration) {
 }
 
 /**
- * RallyApi - factory interface
+ * HelloApi - factory interface
  * @export
  */
 export const RallyApiFactory = function (
@@ -855,9 +855,9 @@ export const RallyApiFactory = function (
 }
 
 /**
- * RallyApi - object-oriented interface
+ * HelloApi - object-oriented interface
  * @export
- * @class RallyApi
+ * @class HelloApi
  * @extends {BaseAPI}
  */
 export class RallyApi extends BaseAPI {
@@ -951,7 +951,7 @@ export class RallyApi extends BaseAPI {
 }
 
 /**
- * StampApi - axios parameter creator
+ * TodoApi - axios parameter creator
  * @export
  */
 export const StampApiAxiosParamCreator = function (configuration?: Configuration) {
@@ -1511,7 +1511,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 }
 
 /**
- * UserApi - functional programming interface
+ * TodoApi - functional programming interface
  * @export
  */
 export const UserApiFp = function (configuration?: Configuration) {
@@ -1642,7 +1642,7 @@ export const UserApiFp = function (configuration?: Configuration) {
 }
 
 /**
- * UserApi - factory interface
+ * TodoApi - factory interface
  * @export
  */
 export const UserApiFactory = function (
@@ -1716,9 +1716,9 @@ export const UserApiFactory = function (
 }
 
 /**
- * UserApi - object-oriented interface
+ * TodoApi - object-oriented interface
  * @export
- * @class UserApi
+ * @class TodoApi
  * @extends {BaseAPI}
  */
 export class UserApi extends BaseAPI {

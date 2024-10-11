@@ -17,8 +17,8 @@ export const Routes = () =>
 					element: <Home />,
 				},
 				{
-					path: path.home(),
-					element: <Home />,
+					path: path.todo(':id'),
+					element: <Todo />,
 				},
 				{
 					path: path.signup(),
