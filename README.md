@@ -1,7 +1,7 @@
 # QRコードスタンプラリー
 
 ## 概要
-### なぜこれを作ったのか
+### なぜこれを作ったのか？
 文化祭でいくつか出店した際、訪れるお客さんの数に偏りがあることに気づきました。すべての出し物に多くの方が触れていただけるように、何か良い方法はないかと考えた結果、スタンプラリーの導入を思いつきました。そこで、一般的なスタンプラリーとは異なり、多くの方が所持しているスマホを活用してスタンプを集めてもらう方式にしました。これにより、スタンプラリーの準備が簡素化され、出し物やスタンプを増やす際も柔軟に対応できるメリットがあります。
 
 ## 主な技術スタック
@@ -18,15 +18,19 @@
 [<img src="https://img.shields.io/badge/-PostgreSQL-101010.svg?logo=postgresql&style=flat">](https://git-scm.com/downloads)
 [<img src="https://img.shields.io/badge/-OpenAPI-FFFFFF.svg?logo=openapiinitiative&style=flat">](https://git-scm.com/downloads)
 
+
 ## ギャラリー
 ユーザーがQRコード読み込む際に表示される画面
 ![black-line](https://github.com/user-attachments/assets/cb56d995-6169-4d45-ab8d-17c8d9410f43)
 
+
 QR読み込み完了した際に表示される画面
 ![red-line](https://github.com/user-attachments/assets/58870e25-4613-45f1-b2f5-f93c08a9b67f)
 
+
 ユーザーがスタンプラリーしている際のホーム画面
 ![collect-stamp](https://github.com/user-attachments/assets/2d6a1759-2ca2-4c52-91be-a1dce24fb0f8)
+
 
 ## 工夫した点
 ### ユーザー目線を意識
